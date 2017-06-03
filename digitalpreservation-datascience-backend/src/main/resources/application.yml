@@ -1,0 +1,21 @@
+server:
+    port: 9000
+
+spring:
+    application:
+        name: Digital Preservation - Data Science
+        
+    data:
+      mongodb:
+          host: localhost
+          port: 27017
+          database: datascience
+        
+weather:
+    endpoint:
+        all-weather-data: http://at-wetter.tk/api/v1/t
+        all-channels: http://at-wetter.tk/api/v1/stations
+        single-channel: http://at-wetter.tk/api/v1/station/
+        
+    
+    

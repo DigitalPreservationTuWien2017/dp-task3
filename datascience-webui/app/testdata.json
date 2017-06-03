@@ -1,0 +1,53 @@
+{"data": [
+    {
+      "city": "Wien",
+      "temperature": "20",
+      "date": "2017/06/01 08:00"
+    },
+    {
+      "city": "Wien",
+      "temperature": "25",
+      "date": "2017/06/01 09:00"
+    },
+    {
+      "city": "Wien",
+      "temperature": "27",
+      "date": "2017/06/01 10:00"
+    },
+    {
+      "city": "Wien",
+      "temperature": "27",
+      "date": "2017/06/01 11:00"
+    },
+    {
+      "city": "Wien",
+      "temperature": "31",
+      "date": "2017/06/01 12:00"
+    },
+  {
+    "city": "Linz",
+    "temperature": "21",
+    "date": "2017/06/01 08:00"
+  },
+  {
+    "city": "Linz",
+    "temperature": "25",
+    "date": "2017/06/01 09:00"
+  },
+  {
+    "city": "Linz",
+    "temperature": "27",
+    "date": "2017/06/01 10:00"
+  },
+  {
+    "city": "Linz",
+    "temperature": "27",
+    "date": "2017/06/01 11:00"
+  },
+  {
+    "city": "Linz",
+    "temperature": "31",
+    "date": "2017/06/01 12:00"
+  }
+  ]
+}

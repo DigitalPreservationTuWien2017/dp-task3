@@ -1,0 +1,31 @@
+<html ng-app="ionicApp">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+
+  <title>Graphs with Ionic</title>
+
+  <link href="//code.ionicframework.com/nightly/css/ionic.css" rel="stylesheet">
+  <link href="//raw.githubusercontent.com/jtblin/angular-chart.js/master/dist/angular-chart.css" rel="stylesheet">
+
+  <script src="//cdnjs.cloudflare.com/ajax/libs/Chart.js/1.0.1/Chart.min.js"></script>
+  <script src="//code.ionicframework.com/nightly/js/ionic.bundle.js"></script>
+  <script src="app.js"></script>
+
+</head>
+
+<body ng-controller="GraphCtrl">
+
+<ion-header-bar class="bar-positive">
+  <h1 class="title">Ionic Graphs</h1>
+</ion-header-bar>
+
+<ion-content>
+  <h1>Weather Data</h1>
+  <canvas id="bar" class="chart chart-line" data="graph.data" labels="graph.labels" series='graph.series' height="50"></canvas>
+</ion-content>
+
+</body>
+
+</html>
