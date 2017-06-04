@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import at.tuwien.ss17.dp.lab3.datascience.model.Data;
+import at.tuwien.ss17.dp.lab3.datascience.model.DataWrapper;
 import at.tuwien.ss17.dp.lab3.datascience.model.Weather;
 import at.tuwien.ss17.dp.lab3.datascience.service.DataScienceService;
 
@@ -30,6 +32,12 @@ public class DataScienceController {
 	public List<Weather> getWeatherAllData(){
 		logger.info("Request Receive- getWeatherAllData");
 		return dataScienceService.getWeatherAllData();
+	}
+
+	@RequestMapping(value="/getApiData")
+	public DataWrapper getApiData(){
+		logger.info("Request Receive- getApiData");
+		return new DataWrapper(dataScienceService.getApiData());
 	}
 
 	@RequestMapping(value="/getWeatherByChannel")

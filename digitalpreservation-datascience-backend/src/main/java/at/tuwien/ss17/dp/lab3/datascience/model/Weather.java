@@ -3,6 +3,7 @@ package at.tuwien.ss17.dp.lab3.datascience.model;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -52,6 +53,10 @@ public class Weather implements Serializable {
 		this.unit = unit.replace("'", "");
 		this.timestamp = LocalDateTime.parse(timestamp.replace("'", ""), Constants.formatter2);
 	}
+	public Weather(String channel, String city){
+		this.channel = Long.valueOf(channel.replace("'", ""));
+		this.city = city.replace("'", "");
+	}
 
 	public Long getChannel() {
 		return channel;
@@ -63,6 +68,10 @@ public class Weather implements Serializable {
 
 	public String getDateForecast() {
 		return dateForecast.toString();
+	}
+	public String getDateForecastTimeFormated() {
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm");
+		return dateForecast.format(formatter);
 	}
 
 	public BigDecimal getTemperature() {

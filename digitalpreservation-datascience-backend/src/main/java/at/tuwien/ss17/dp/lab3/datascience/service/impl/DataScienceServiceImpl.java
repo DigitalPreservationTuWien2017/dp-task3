@@ -1,7 +1,15 @@
 package at.tuwien.ss17.dp.lab3.datascience.service.impl;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
+import java.util.SortedSet;
+import java.util.TreeSet;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -10,8 +18,8 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
+import at.tuwien.ss17.dp.lab3.datascience.model.Data;
 import at.tuwien.ss17.dp.lab3.datascience.model.Weather;
-import at.tuwien.ss17.dp.lab3.datascience.repository.WeatherRespository;
 import at.tuwien.ss17.dp.lab3.datascience.service.DataScienceService;
 import at.tuwien.ss17.dp.lab3.datascience.service.WeatherService;
 
@@ -22,7 +30,7 @@ public class DataScienceServiceImpl implements DataScienceService {
 
 	@Autowired
 	private RestTemplate restTemplate;
-	
+
 	@Autowired
 	private WeatherService weatherService;
 
@@ -44,8 +52,9 @@ public class DataScienceServiceImpl implements DataScienceService {
 
 	private List<Weather> parseStringToWeatherList(String result) {
 
-		String[] list = result.split("\n");
 		List<Weather> weatherList = new ArrayList<Weather>();
+		if (result==null) return weatherList;
+		String[] list = result.split("\n");
 
 		if (list == null || list.length == 0)
 			new ArrayList<Weather>();
@@ -54,7 +63,8 @@ public class DataScienceServiceImpl implements DataScienceService {
 			logger.info("Line " + line);
 			logger.info(list[line]);
 			String[] columns = list[line].split(";");
-			Weather weather = new Weather(columns[0], columns[1], columns[3], columns[4],columns[5], columns[6], columns[7]);
+			Weather weather = new Weather(columns[0], columns[1], columns[3], columns[4], columns[5], columns[6],
+					columns[7]);
 			weatherList.add(weather);
 			weatherService.create(weather);
 		}
@@ -76,4 +86,55 @@ public class DataScienceServiceImpl implements DataScienceService {
 		return restTemplate.getForObject(allChannelsURI, String.class);
 	}
 
+	@Override
+	public Data getApiData() {
+		List<Weather> all = weatherService.findAll();
+		return parseWeatherToApi(all);
+	}
+
+	private Data parseWeatherToApi(List<Weather> all) {
+		Set<String> series = new HashSet<>();
+		Set<String> labels = new HashSet<>();
+		List<BigDecimal[]> data = new ArrayList<>();
+		List<Weather> allChannels = parseAllChannelsWeatherList(getAllChannels());
+
+		for (Weather weather : allChannels) {
+			series.add(weather.getCity());
+			List<Weather> dayInfos = parseStringToWeatherList(
+					getWeatherByChannel(weather.getChannel().toString()));
+			BigDecimal[] temperatures = new BigDecimal[dayInfos.size()];
+			int i =0;
+			for(Weather singleDayInfo:dayInfos){
+				labels.add(singleDayInfo.getDateForecastTimeFormated());
+				temperatures[i]=singleDayInfo.getTemperature();
+				i++;
+			}
+			data.add(temperatures);
+		}
+		List<String > sorted=new ArrayList(labels);
+		sorted.sort(String::compareToIgnoreCase);
+		return new Data(new ArrayList(series),sorted,data);
+	}
+
+
+	private List<Weather> parseAllChannelsWeatherList(String result) {
+
+		List<Weather> weatherList = new ArrayList<Weather>();
+		if (result==null)
+			return weatherList;
+		String[] list = result.split("\n");
+
+		if (list == null || list.length == 0)
+			new ArrayList<Weather>();
+
+		for (int line = 0; line < list.length; line++) {
+			logger.info("Line " + line);
+			logger.info(list[line]);
+			String[] columns = list[line].split(";");
+			Weather weather = new Weather(columns[0], columns[1]);
+			weatherList.add(weather);
+		}
+		logger.info(Arrays.deepToString(weatherList.toArray()));
+		return weatherList;
+	}
 }
