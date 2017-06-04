@@ -13,5 +13,29 @@
 * e0901130@student.tuwien.ac.at  
 * ORCID ID: 0000-0003-4032-6008
 
-### TODO
-TODO
+### Running the Application
+
+#### Requirements 
+* MongoDB
+* Gradle 3.x
+* Java 8  
+
+#### Running the backend
+
+Go to 
+     dp-task3/digitalpreservation-datascience-backend
+and execute 
+     gradle bootRun
+    
+Raw data is available in http://localhost:9000/getWeatherAllData
+
+#### Running the frontend
+
+Go to 
+    dp-task3/datascience-webui
+and execute 
+    npm install
+    npm start
+
+the chart will open in the browser : http://localhost:8000/
+Since the chart is loading from real data the backend has to fetch all the necessary data. The takes up to 30s to load.      
