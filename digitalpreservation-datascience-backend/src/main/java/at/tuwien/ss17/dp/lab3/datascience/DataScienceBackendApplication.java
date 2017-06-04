@@ -5,16 +5,22 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> bc488855ecbfb873257992d1dec817bbfac4a278
 import org.springframework.context.annotation.Bean;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
+<<<<<<< HEAD
 =======
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 >>>>>>> 82d8c4ba981a459f9b1136db32ac23b0012bab6e
+=======
+>>>>>>> bc488855ecbfb873257992d1dec817bbfac4a278
 
 @SpringBootApplication
 @RestController
@@ -29,6 +35,9 @@ public class DataScienceBackendApplication {
 		return "Hello world! I'm  Data Science Backend ";
 	}
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> bc488855ecbfb873257992d1dec817bbfac4a278
 	
 	@Bean
     public WebMvcConfigurer corsConfigurer() {
@@ -39,6 +48,9 @@ public class DataScienceBackendApplication {
             }
         };
     }
+<<<<<<< HEAD
 =======
 >>>>>>> 82d8c4ba981a459f9b1136db32ac23b0012bab6e
+=======
+>>>>>>> bc488855ecbfb873257992d1dec817bbfac4a278
 }
