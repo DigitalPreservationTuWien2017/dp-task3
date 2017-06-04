@@ -1,49 +1,18 @@
 angular.module('ionicApp', ['ionic','chart.js'])
 
-<<<<<<< HEAD
-    .controller('GraphCtrl', function($scope,$http) {
-        "use strict";
-        $scope.graph = {};
 
-        $http.get('http://localhost:9000/getApiData')
-            .then(function(res){
-                console.log(res.data.data[0])
-                $scope.graph = res.data.data[0];
-            });
-        /*$scope.graph.data = [
-=======
-    .controller('GraphCtrl', function($scope) {
-        $scope.graph = {};
-        $scope.graph.data = [
->>>>>>> 82d8c4ba981a459f9b1136db32ac23b0012bab6e
-            //Awake
-            [16, 15, 20, 12, 16, 12, 8],
-            //Asleep
-            [8, 9, 4, 12, 8, 12, 14]
-<<<<<<< HEAD
-        ];*/
+.controller('GraphCtrl', function($scope,$http) {
+    "use strict";
+    $scope.graph = {};
 
-        //$http.get('testdata.json').then(successCallback, errorCallback);
+    $http.get('http://localhost:9000/getApiData')
+        .then(function(res){
+            console.log(res.data.data[0])
+            $scope.graph = res.data.data[0];
+        });
 
-       /* function successCallback(response) {
-            console.log("It worked!");
-            //$scope.graph.series.push(response.dataset.series);
-            $scope.graph.data = response.dataset.data;
-            //$scope.graph.labels.push(response.dataset.labels);
-        }
 
-        function errorCallback(error) {
-            console.log("Something went wrong");
-            throw error;
-        }
-        */
-=======
-        ];
-        $scope.graph.labels = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
-        $scope.graph.series = ['Awake', 'Asleep'];
->>>>>>> 82d8c4ba981a459f9b1136db32ac23b0012bab6e
-
-    });
+});
 
 
 
