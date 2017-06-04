@@ -1,5 +1,6 @@
 angular.module('ionicApp', ['ionic','chart.js'])
 
+<<<<<<< HEAD
     .controller('GraphCtrl', function($scope,$http) {
         "use strict";
         $scope.graph = {};
@@ -10,10 +11,16 @@ angular.module('ionicApp', ['ionic','chart.js'])
                 $scope.graph = res.data.data[0];
             });
         /*$scope.graph.data = [
+=======
+    .controller('GraphCtrl', function($scope) {
+        $scope.graph = {};
+        $scope.graph.data = [
+>>>>>>> 82d8c4ba981a459f9b1136db32ac23b0012bab6e
             //Awake
             [16, 15, 20, 12, 16, 12, 8],
             //Asleep
             [8, 9, 4, 12, 8, 12, 14]
+<<<<<<< HEAD
         ];*/
 
         //$http.get('testdata.json').then(successCallback, errorCallback);
@@ -30,6 +37,11 @@ angular.module('ionicApp', ['ionic','chart.js'])
             throw error;
         }
         */
+=======
+        ];
+        $scope.graph.labels = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
+        $scope.graph.series = ['Awake', 'Asleep'];
+>>>>>>> 82d8c4ba981a459f9b1136db32ac23b0012bab6e
 
     });
 

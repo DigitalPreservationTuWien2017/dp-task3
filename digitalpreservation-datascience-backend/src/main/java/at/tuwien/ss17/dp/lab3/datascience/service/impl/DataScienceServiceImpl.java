@@ -1,5 +1,6 @@
 package at.tuwien.ss17.dp.lab3.datascience.service.impl;
 
+<<<<<<< HEAD
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -10,6 +11,10 @@ import java.util.List;
 import java.util.Set;
 import java.util.SortedSet;
 import java.util.TreeSet;
+=======
+import java.util.ArrayList;
+import java.util.List;
+>>>>>>> 82d8c4ba981a459f9b1136db32ac23b0012bab6e
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -18,8 +23,13 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
+<<<<<<< HEAD
 import at.tuwien.ss17.dp.lab3.datascience.model.Data;
 import at.tuwien.ss17.dp.lab3.datascience.model.Weather;
+=======
+import at.tuwien.ss17.dp.lab3.datascience.model.Weather;
+import at.tuwien.ss17.dp.lab3.datascience.repository.WeatherRespository;
+>>>>>>> 82d8c4ba981a459f9b1136db32ac23b0012bab6e
 import at.tuwien.ss17.dp.lab3.datascience.service.DataScienceService;
 import at.tuwien.ss17.dp.lab3.datascience.service.WeatherService;
 
@@ -30,7 +40,11 @@ public class DataScienceServiceImpl implements DataScienceService {
 
 	@Autowired
 	private RestTemplate restTemplate;
+<<<<<<< HEAD
 
+=======
+	
+>>>>>>> 82d8c4ba981a459f9b1136db32ac23b0012bab6e
 	@Autowired
 	private WeatherService weatherService;
 
@@ -52,9 +66,14 @@ public class DataScienceServiceImpl implements DataScienceService {
 
 	private List<Weather> parseStringToWeatherList(String result) {
 
+<<<<<<< HEAD
 		List<Weather> weatherList = new ArrayList<Weather>();
 		if (result==null) return weatherList;
 		String[] list = result.split("\n");
+=======
+		String[] list = result.split("\n");
+		List<Weather> weatherList = new ArrayList<Weather>();
+>>>>>>> 82d8c4ba981a459f9b1136db32ac23b0012bab6e
 
 		if (list == null || list.length == 0)
 			new ArrayList<Weather>();
@@ -63,8 +82,12 @@ public class DataScienceServiceImpl implements DataScienceService {
 			logger.info("Line " + line);
 			logger.info(list[line]);
 			String[] columns = list[line].split(";");
+<<<<<<< HEAD
 			Weather weather = new Weather(columns[0], columns[1], columns[3], columns[4], columns[5], columns[6],
 					columns[7]);
+=======
+			Weather weather = new Weather(columns[0], columns[1], columns[3], columns[4],columns[5], columns[6], columns[7]);
+>>>>>>> 82d8c4ba981a459f9b1136db32ac23b0012bab6e
 			weatherList.add(weather);
 			weatherService.create(weather);
 		}
@@ -86,6 +109,7 @@ public class DataScienceServiceImpl implements DataScienceService {
 		return restTemplate.getForObject(allChannelsURI, String.class);
 	}
 
+<<<<<<< HEAD
 	@Override
 	public Data getApiData() {
 		List<Weather> all = weatherService.findAll();
@@ -137,4 +161,6 @@ public class DataScienceServiceImpl implements DataScienceService {
 		logger.info(Arrays.deepToString(weatherList.toArray()));
 		return weatherList;
 	}
+=======
+>>>>>>> 82d8c4ba981a459f9b1136db32ac23b0012bab6e
 }
