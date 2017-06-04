@@ -23,19 +23,24 @@
 #### Running the backend
 
 Go to 
+
      dp-task3/digitalpreservation-datascience-backend
-and execute 
+
+and execute
+
      gradle bootRun
     
 Raw data is available in http://localhost:9000/getWeatherAllData
 
 #### Running the frontend
 
-Go to 
+Go to
+
     dp-task3/datascience-webui
 and execute 
+
     npm install
     npm start
 
-the chart will open in the browser : http://localhost:8000/
-Since the chart is loading from real data the backend has to fetch all the necessary data. The takes up to 30s to load.      
+The chart will open in the browser : http://localhost:8000/
+Since the chart is loading from real data the backend has to fetch all the necessary data. The chart takes up to 30s to load.
