@@ -3,14 +3,7 @@ package at.tuwien.ss17.dp.lab3.datascience.model;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
-<<<<<<< HEAD
-<<<<<<< HEAD
 import java.time.format.DateTimeFormatter;
-=======
->>>>>>> 82d8c4ba981a459f9b1136db32ac23b0012bab6e
-=======
-import java.time.format.DateTimeFormatter;
->>>>>>> bc488855ecbfb873257992d1dec817bbfac4a278
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -60,19 +53,11 @@ public class Weather implements Serializable {
 		this.unit = unit.replace("'", "");
 		this.timestamp = LocalDateTime.parse(timestamp.replace("'", ""), Constants.formatter2);
 	}
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> bc488855ecbfb873257992d1dec817bbfac4a278
+
 	public Weather(String channel, String city){
 		this.channel = Long.valueOf(channel.replace("'", ""));
 		this.city = city.replace("'", "");
 	}
-<<<<<<< HEAD
-=======
->>>>>>> 82d8c4ba981a459f9b1136db32ac23b0012bab6e
-=======
->>>>>>> bc488855ecbfb873257992d1dec817bbfac4a278
 
 	public Long getChannel() {
 		return channel;
@@ -85,19 +70,11 @@ public class Weather implements Serializable {
 	public String getDateForecast() {
 		return dateForecast.toString();
 	}
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> bc488855ecbfb873257992d1dec817bbfac4a278
+
 	public String getDateForecastTimeFormated() {
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm");
 		return dateForecast.format(formatter);
 	}
-<<<<<<< HEAD
-=======
->>>>>>> 82d8c4ba981a459f9b1136db32ac23b0012bab6e
-=======
->>>>>>> bc488855ecbfb873257992d1dec817bbfac4a278
 
 	public BigDecimal getTemperature() {
 		return temperature;
