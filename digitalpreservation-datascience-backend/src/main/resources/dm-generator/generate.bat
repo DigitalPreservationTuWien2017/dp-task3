@@ -1,0 +1,1 @@
+%JAVA_HOME%\bin\xjc.exe ..\dmp.xsd -d . -p at.tuwien.ss17.dp.lab3.datascience.model.dmp.json.javax -b binding.xml

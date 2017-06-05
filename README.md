@@ -44,3 +44,22 @@ and execute
 
 The chart will open in the browser : http://localhost:8000/
 Since the chart is loading from real data the backend has to fetch all the necessary data. The chart takes up to 30s to load.
+
+#### Validate and show DMP instance
+
+Frontend for showing data model instance as graph:
+
+    http://<host>:8000/index-part3.html
+
+XSD schema can be found here:
+    
+    digitalpreservation-datascience-backend\src\main\resources\dmp.xsd
+
+##### API usage
+
+Post XML (application/xml) to resource:
+
+    http://<host>:9000/validateDataModelInstance
+
+* Return Status = **200** means validation successful -> Model graph is returned in response body 
+* Return Status = **400** means validation NOT successful. All validation errors are shown in return body. -> Instance is NOT valid
