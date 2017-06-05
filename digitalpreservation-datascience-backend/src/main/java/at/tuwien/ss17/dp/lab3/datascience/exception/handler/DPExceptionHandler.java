@@ -3,8 +3,6 @@ package at.tuwien.ss17.dp.lab3.datascience.exception.handler;
 import at.tuwien.ss17.dp.lab3.datascience.exception.DataModelInstanceValidationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
-import org.xml.sax.SAXParseException;
-
 import javax.servlet.http.HttpServletRequest;
 
 @ControllerAdvice

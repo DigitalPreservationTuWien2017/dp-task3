@@ -14,6 +14,7 @@ import org.xml.sax.SAXParseException;
 
 import java.io.File;
 import java.io.IOException;
+import java.io.StringReader;
 import java.net.URL;
 import java.util.LinkedList;
 import java.util.List;
@@ -22,17 +23,15 @@ import java.util.List;
 public class DMPModelServiceImpl implements DMPModelService {
 
     private final String XSD_LOCATION = "classpath:dmp.xsd";
-    private final String XML_LOCATION = "dmInstance.xml";
 
     @Override
-    public void validateModelInstance() throws DataModelInstanceValidationException {
+    public void validateModelInstance(String xml) throws DataModelInstanceValidationException {
 
         try{
 
             URL schemaFile = new URL(XSD_LOCATION);
 
             ClassLoader classLoader = getClass().getClassLoader();
-            Source xmlFile = new StreamSource(new File(classLoader.getResource(XML_LOCATION).getFile()));
             SchemaFactory schemaFactory = SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI);
 
             Schema schema = schemaFactory.newSchema(schemaFile);
@@ -56,11 +55,9 @@ public class DMPModelServiceImpl implements DMPModelService {
                 }
             });
 
-            validator.validate(xmlFile);
+            validator.validate(new StreamSource(new StringReader(xml)));
 
-            if (exceptions.isEmpty()){
-                System.out.println(xmlFile.getSystemId() + " is valid");
-            }else{
+            if (!exceptions.isEmpty()){
                 String concat = "";
                 for (SAXParseException exception : exceptions) {
                     concat += exception + "\n";

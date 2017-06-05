@@ -5,10 +5,10 @@ import at.tuwien.ss17.dp.lab3.datascience.service.DMPModelService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
 
 @RestController
 public class DataModelController {
@@ -17,11 +17,13 @@ public class DataModelController {
 	
 	@Autowired
 	private DMPModelService dmpModelService;
-	
-	@RequestMapping(value="/validateDataModelInstance")
-	public void validateDataModelInstance() throws DataModelInstanceValidationException{
+
+	@RequestMapping(value = "/validateDataModelInstance", method = RequestMethod.POST,
+			consumes = MediaType.APPLICATION_XML_VALUE)
+	@ResponseStatus(HttpStatus.OK)
+	public void validateDataModelInstance(@RequestBody String xml) throws DataModelInstanceValidationException{
 		logger.info("Request Receive - validateDataModelInstance");
-		dmpModelService.validateModelInstance();
+		dmpModelService.validateModelInstance(xml);
 	}
 
 

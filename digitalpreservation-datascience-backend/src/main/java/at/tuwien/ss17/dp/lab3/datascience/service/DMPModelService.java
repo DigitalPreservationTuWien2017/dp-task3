@@ -5,6 +5,6 @@ import at.tuwien.ss17.dp.lab3.datascience.exception.DataModelInstanceValidationE
 
 public interface DMPModelService {
 
-    void validateModelInstance () throws DataModelInstanceValidationException;
+    void validateModelInstance(String xml) throws DataModelInstanceValidationException;
 
 }
