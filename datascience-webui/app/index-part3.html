@@ -2,12 +2,9 @@
 <html>
 <head>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>State Chart</title>
-  <meta name="description" content="A finite state machine chart with editable and interactive features." />
-  <!-- Copyright 1998-2017 by Northwoods Software Corporation. -->
+  <title>Landing page</title>
   <meta charset="UTF-8">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gojs/1.7.11/go-debug.js"></script>
-  <!--<script src="../assets/js/goSamples.js"></script> -->
   <script id="code">
       function init() {
           if (window.goSamples) goSamples();  // init for these samples -- you don't need to call this
@@ -25,7 +22,7 @@
                       "undoManager.isEnabled": true
                   });
           // when the document is modified, add a "*" to the title and enable the "Save" button
-          myDiagram.addDiagramListener("Modified", function(e) {
+        /*  myDiagram.addDiagramListener("Modified", function(e) {
               var button = document.getElementById("SaveButton");
               if (button) button.disabled = !myDiagram.isModified;
               var idx = document.title.indexOf("*");
@@ -34,7 +31,7 @@
               } else {
                   if (idx >= 0) document.title = document.title.substr(0, idx);
               }
-          });
+          });*/
           // define the Node template
           myDiagram.nodeTemplate =
               $(go.Node, "Auto",
@@ -58,7 +55,7 @@
                       new go.Binding("text").makeTwoWay())
               );
           // unlike the normal selection Adornment, this one includes a Button
-          myDiagram.nodeTemplate.selectionAdornmentTemplate =
+         /* myDiagram.nodeTemplate.selectionAdornmentTemplate =
               $(go.Adornment, "Spot",
                   $(go.Panel, "Auto",
                       $(go.Shape, { fill: null, stroke: "blue", strokeWidth: 2 }),
@@ -72,7 +69,7 @@
                       },
                       $(go.Shape, "PlusLine", { width: 6, height: 6 })
                   ) // end button
-              ); // end Adornment
+              ); // end Adornment*/
           // clicking the button inserts a new node to the right of the selected node,
           // and adds a link to that new node
           function addNodeAndLink(e, obj) {
@@ -106,7 +103,7 @@
               diagram.scrollToRect(newnode.actualBounds);
           }
           // replace the default Link template in the linkTemplateMap
-          myDiagram.linkTemplate =
+         /* myDiagram.linkTemplate =
               $(go.Link,  // the whole link panel
                   {
                       curve: go.Link.Bezier, adjusting: go.Link.Stretch,
@@ -136,14 +133,46 @@
                           // editing the text automatically updates the model data
                           new go.Binding("text").makeTwoWay())
                   )
-              );
-          // read in the JSON data from the "mySavedModel" element
+              );*/
+
+          //reset default xml datamodel instance and validate & draw model
+          reset();
           validate();
       }
-      // Show the diagram's model in JSON format
-      function save() {
-          document.getElementById("mySavedModel").value = myDiagram.model.toJson();
+
+      //set default xml instance
+      function reset() {
+
+          var defaultXml =
+                '<DataManagementPlan> \n'+
+                '    <File> \n'+
+                '        <Metadata>\n'+
+                '            <dcFormat>json</dcFormat>\n'+
+                '            <dcTitle>title</dcTitle>\n'+
+                '            <dcDescription>description</dcDescription>\n'+
+                '            <dcCreator>hoferd</dcCreator>\n'+
+                '            <dcSource>http://at-wetter.tk</dcSource>\n'+
+                '            <dcDate>2017-01-01</dcDate>\n'+
+                '        </Metadata>\n'+
+                '        <Preservation>\n'+
+                '            <test3>test</test3>\n'+
+                '        </Preservation>\n'+
+                '    </File>\n'+
+                '        <SourceCode>\n'+
+                '            <DataVolume>\n'+
+                '            <test4>test</test4>\n'+
+                '            </DataVolume>\n'+
+                '            <IntellectualPropertyRights>\n'+
+                '                <license>https://opensource.org/licenses/MIT</license>\n'+
+                '            </IntellectualPropertyRights>\n'+
+                '        </SourceCode>\n'+
+                '</DataManagementPlan>';
+
+          document.getElementById('mySavedModel').value = defaultXml;
+
       }
+
+      //valida xml instance in backend and draw model
       function validate() {
           var xhttp = new XMLHttpRequest();
           xhttp.open("POST", "http://localhost:9000/validateDataModelInstance", false);
@@ -175,36 +204,16 @@
     Paste XML data model isntance according to dmp.xsd schema and click validate.
     If datamodel instance does not comply with xsd schema all validation errors are shown below.
     If validation is successful, the data model is shown as graph above.
+    Click reset to insert a default XML datamodel instance.
   </p>
   <div>
     <div>
-      <button onclick="validate()">validate</button>
+      <button onclick="validate()">validate and draw graph</button>
+        <button onclick="reset()">reset</button>
       Model instance in XML format:
     </div>
     <textarea id="mySavedModel" style="width:100%;height:300px">
-        <DataManagementPlan>
-            <File>
-                <Metadata>
-                    <dcFormat>json</dcFormat>
-                    <dcTitle>title</dcTitle>
-                    <dcDescription>description</dcDescription>
-                    <dcCreator>hoferd</dcCreator>
-                    <dcSource>http://at-wetter.tk</dcSource>
-                    <dcDate>2017-01-01</dcDate>
-                </Metadata>
-                <Preservation>
-                    <test3>test</test3>
-                </Preservation>
-            </File>
-            <SourceCode>
-                <DataVolume>
-                    <test4>test</test4>
-                </DataVolume>
-                <IntellectualPropertyRights>
-                    <license>https://opensource.org/licenses/MIT</license>
-                </IntellectualPropertyRights>
-            </SourceCode>
-        </DataManagementPlan>
+
     </textarea>
   </div>
 </div>
