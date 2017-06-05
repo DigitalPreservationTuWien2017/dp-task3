@@ -137,38 +137,18 @@
 
           //reset default xml datamodel instance and validate & draw model
           reset();
-          validate();
+
       }
 
       //set default xml instance
       function reset() {
 
-          var defaultXml =
-                '<DataManagementPlan> \n'+
-                '    <File> \n'+
-                '        <Metadata>\n'+
-                '            <dcFormat>json</dcFormat>\n'+
-                '            <dcTitle>title</dcTitle>\n'+
-                '            <dcDescription>description</dcDescription>\n'+
-                '            <dcCreator>hoferd</dcCreator>\n'+
-                '            <dcSource>http://at-wetter.tk</dcSource>\n'+
-                '            <dcDate>2017-01-01</dcDate>\n'+
-                '        </Metadata>\n'+
-                '        <Preservation>\n'+
-                '            <test3>test</test3>\n'+
-                '        </Preservation>\n'+
-                '    </File>\n'+
-                '        <SourceCode>\n'+
-                '            <DataVolume>\n'+
-                '            <test4>test</test4>\n'+
-                '            </DataVolume>\n'+
-                '            <IntellectualPropertyRights>\n'+
-                '                <license>https://opensource.org/licenses/MIT</license>\n'+
-                '            </IntellectualPropertyRights>\n'+
-                '        </SourceCode>\n'+
-                '</DataManagementPlan>';
-
-          document.getElementById('mySavedModel').value = defaultXml;
+          var client = new XMLHttpRequest();
+          client.open('GET', '/dmInstanceExample.xml');
+          client.onreadystatechange = function() {
+              document.getElementById('mySavedModel').value = client.responseText;
+          }
+          client.send();
 
       }
 
