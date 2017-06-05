@@ -15,17 +15,17 @@ import javax.xml.bind.annotation.XmlType;
 
 
 /**
- * <p>Java-Klasse f�r documentationType complex type.
+ * <p>Java-Klasse f�r rolesAndResponsibilitiesType complex type.
  * 
  * <p>Das folgende Schemafragment gibt den erwarteten Content an, der in dieser Klasse enthalten ist.
  * 
  * <pre>
- * &lt;complexType name="documentationType">
+ * &lt;complexType name="rolesAndResponsibilitiesType">
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element name="type" type="{http://www.w3.org/2001/XMLSchema}string"/>
- *         &lt;element name="location" type="{http://www.w3.org/2001/XMLSchema}string"/>
+ *         &lt;element name="roleName" type="{http://www.w3.org/2001/XMLSchema}string"/>
+ *         &lt;element name="responsibilitiesDescription" type="{http://www.w3.org/2001/XMLSchema}string"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -35,63 +35,63 @@ import javax.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "documentationType", propOrder = {
-    "type",
-    "location"
+@XmlType(name = "rolesAndResponsibilitiesType", propOrder = {
+    "roleName",
+    "responsibilitiesDescription"
 })
-public class DocumentationType {
+public class RolesAndResponsibilitiesType {
 
     @XmlElement(required = true)
-    protected String type;
+    protected String roleName;
     @XmlElement(required = true)
-    protected String location;
+    protected String responsibilitiesDescription;
 
     /**
-     * Ruft den Wert der type-Eigenschaft ab.
+     * Ruft den Wert der roleName-Eigenschaft ab.
      * 
      * @return
      *     possible object is
      *     {@link String }
      *     
      */
-    public String getType() {
-        return type;
+    public String getRoleName() {
+        return roleName;
     }
 
     /**
-     * Legt den Wert der type-Eigenschaft fest.
+     * Legt den Wert der roleName-Eigenschaft fest.
      * 
      * @param value
      *     allowed object is
      *     {@link String }
      *     
      */
-    public void setType(String value) {
-        this.type = value;
+    public void setRoleName(String value) {
+        this.roleName = value;
     }
 
     /**
-     * Ruft den Wert der location-Eigenschaft ab.
+     * Ruft den Wert der responsibilitiesDescription-Eigenschaft ab.
      * 
      * @return
      *     possible object is
      *     {@link String }
      *     
      */
-    public String getLocation() {
-        return location;
+    public String getResponsibilitiesDescription() {
+        return responsibilitiesDescription;
     }
 
     /**
-     * Legt den Wert der location-Eigenschaft fest.
+     * Legt den Wert der responsibilitiesDescription-Eigenschaft fest.
      * 
      * @param value
      *     allowed object is
      *     {@link String }
      *     
      */
-    public void setLocation(String value) {
-        this.location = value;
+    public void setResponsibilitiesDescription(String value) {
+        this.responsibilitiesDescription = value;
     }
 
 }

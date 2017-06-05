@@ -2,7 +2,7 @@
 // Diese Datei wurde mit der JavaTM Architecture for XML Binding(JAXB) Reference Implementation, v2.2.8-b130911.1802 generiert 
 // Siehe <a href="http://java.sun.com/xml/jaxb">http://java.sun.com/xml/jaxb</a> 
 // �nderungen an dieser Datei gehen bei einer Neukompilierung des Quellschemas verloren. 
-// Generiert: 2017.06.05 um 01:52:16 PM CEST 
+// Generiert: 2017.06.05 um 04:15:35 PM CEST 
 //
 
 
@@ -45,11 +45,43 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link File }
+     * Create an instance of {@link DataRepositoryType }
      * 
      */
-    public File createFile() {
-        return new File();
+    public DataRepositoryType createDataRepositoryType() {
+        return new DataRepositoryType();
+    }
+
+    /**
+     * Create an instance of {@link EthicsPrivacyType }
+     * 
+     */
+    public EthicsPrivacyType createEthicsPrivacyType() {
+        return new EthicsPrivacyType();
+    }
+
+    /**
+     * Create an instance of {@link RolesAndResponsibilitiesType }
+     * 
+     */
+    public RolesAndResponsibilitiesType createRolesAndResponsibilitiesType() {
+        return new RolesAndResponsibilitiesType();
+    }
+
+    /**
+     * Create an instance of {@link BudgetType }
+     * 
+     */
+    public BudgetType createBudgetType() {
+        return new BudgetType();
+    }
+
+    /**
+     * Create an instance of {@link ExperimentFile }
+     * 
+     */
+    public ExperimentFile createExperimentFile() {
+        return new ExperimentFile();
     }
 
     /**
@@ -77,14 +109,6 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link IntellectualPropertyRightsType }
-     * 
-     */
-    public IntellectualPropertyRightsType createIntellectualPropertyRightsType() {
-        return new IntellectualPropertyRightsType();
-    }
-
-    /**
      * Create an instance of {@link PreservationType }
      * 
      */
@@ -93,11 +117,11 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link DataRepositoryType }
+     * Create an instance of {@link IntellectualPropertyRightsType }
      * 
      */
-    public DataRepositoryType createDataRepositoryType() {
-        return new DataRepositoryType();
+    public IntellectualPropertyRightsType createIntellectualPropertyRightsType() {
+        return new IntellectualPropertyRightsType();
     }
 
     /**

@@ -29,13 +29,13 @@ public class DataModelController {
 			consumes = MediaType.APPLICATION_XML_VALUE)
 	@ResponseStatus(HttpStatus.OK)
 	@CrossOrigin(origins = "*")
-	public DmpModel validateDataModelInstance(@RequestBody String xml) throws DataModelInstanceValidationException{
+	public DmpModel validateDataModelInstance(@RequestBody String xml, HttpServletResponse response) throws DataModelInstanceValidationException{
 		logger.info("Request Receive - validateDataModelInstance");
 		DmpModel dmpModel = dmpModelService.validateAndUnmarshalModelInstance(xml);
 
 		//TODO remove
-        DmpModel m = new DmpModel();
-        m.setNodeKeyProperty("id");
+        dmpModel = new DmpModel();
+        dmpModel.setNodeKeyProperty("id");
 
         List<NodeDataArray> ndaList = new ArrayList<>();
         NodeDataArray nda = new NodeDataArray();
@@ -49,7 +49,7 @@ public class DataModelController {
         nda.setText("First down");
         ndaList.add(nda);
 
-        m.setNodeDataArray(ndaList);
+        dmpModel.setNodeDataArray(ndaList);
 
         List<LinkDataArray> ldaList = new ArrayList<>();
         LinkDataArray lda = new LinkDataArray();
@@ -62,14 +62,14 @@ public class DataModelController {
         lda.setFrom(0);
         lda.setTo(1);
         lda.setText("down");
-        lda.setCurviness(20);
+        lda.setCurviness(10);
         ldaList.add(lda);
 
-        m.setLinkDataArray(ldaList);
+        dmpModel.setLinkDataArray(ldaList);
 
 
 
-		return m;
+		return dmpModel;
 	}
 
 

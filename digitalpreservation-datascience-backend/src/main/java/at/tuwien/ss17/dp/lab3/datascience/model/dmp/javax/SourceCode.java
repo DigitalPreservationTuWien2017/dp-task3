@@ -2,12 +2,14 @@
 // Diese Datei wurde mit der JavaTM Architecture for XML Binding(JAXB) Reference Implementation, v2.2.8-b130911.1802 generiert 
 // Siehe <a href="http://java.sun.com/xml/jaxb">http://java.sun.com/xml/jaxb</a> 
 // �nderungen an dieser Datei gehen bei einer Neukompilierung des Quellschemas verloren. 
-// Generiert: 2017.06.05 um 01:52:16 PM CEST 
+// Generiert: 2017.06.05 um 04:15:35 PM CEST 
 //
 
 
 package at.tuwien.ss17.dp.lab3.datascience.model.dmp.javax;
 
+import java.util.ArrayList;
+import java.util.List;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
@@ -24,11 +26,11 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element name="Preservation" type="{}PreservationType" minOccurs="0"/>
- *         &lt;element name="DataVolume" type="{}DataVolumeType" minOccurs="0"/>
- *         &lt;element name="DataRepository" type="{}DataRepositoryType" minOccurs="0"/>
- *         &lt;element name="Documentation" type="{}DocumentationType" minOccurs="0"/>
- *         &lt;element name="IntellectualPropertyRights" type="{}IntellectualPropertyRightsType"/>
+ *         &lt;element name="metadata" type="{}metadataType" minOccurs="0"/>
+ *         &lt;element name="preservation" type="{}preservationType"/>
+ *         &lt;element name="dataVolume" type="{}dataVolumeType"/>
+ *         &lt;element name="documentation" type="{}documentationType" maxOccurs="unbounded"/>
+ *         &lt;element name="intellectualPropertyRights" type="{}intellectualPropertyRightsType"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -39,24 +41,47 @@ import javax.xml.bind.annotation.XmlType;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
+    "metadata",
     "preservation",
     "dataVolume",
-    "dataRepository",
     "documentation",
     "intellectualPropertyRights"
 })
 public class SourceCode {
 
-    @XmlElement(name = "Preservation")
+    protected MetadataType metadata;
+    @XmlElement(required = true)
     protected PreservationType preservation;
-    @XmlElement(name = "DataVolume")
+    @XmlElement(required = true)
     protected DataVolumeType dataVolume;
-    @XmlElement(name = "DataRepository")
-    protected DataRepositoryType dataRepository;
-    @XmlElement(name = "Documentation")
-    protected DocumentationType documentation;
-    @XmlElement(name = "IntellectualPropertyRights", required = true)
+    @XmlElement(required = true)
+    protected List<DocumentationType> documentation;
+    @XmlElement(required = true)
     protected IntellectualPropertyRightsType intellectualPropertyRights;
+
+    /**
+     * Ruft den Wert der metadata-Eigenschaft ab.
+     * 
+     * @return
+     *     possible object is
+     *     {@link MetadataType }
+     *     
+     */
+    public MetadataType getMetadata() {
+        return metadata;
+    }
+
+    /**
+     * Legt den Wert der metadata-Eigenschaft fest.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link MetadataType }
+     *     
+     */
+    public void setMetadata(MetadataType value) {
+        this.metadata = value;
+    }
 
     /**
      * Ruft den Wert der preservation-Eigenschaft ab.
@@ -107,51 +132,32 @@ public class SourceCode {
     }
 
     /**
-     * Ruft den Wert der dataRepository-Eigenschaft ab.
+     * Gets the value of the documentation property.
      * 
-     * @return
-     *     possible object is
-     *     {@link DataRepositoryType }
-     *     
-     */
-    public DataRepositoryType getDataRepository() {
-        return dataRepository;
-    }
-
-    /**
-     * Legt den Wert der dataRepository-Eigenschaft fest.
+     * <p>
+     * This accessor method returns a reference to the live list,
+     * not a snapshot. Therefore any modification you make to the
+     * returned list will be present inside the JAXB object.
+     * This is why there is not a <CODE>set</CODE> method for the documentation property.
      * 
-     * @param value
-     *     allowed object is
-     *     {@link DataRepositoryType }
-     *     
-     */
-    public void setDataRepository(DataRepositoryType value) {
-        this.dataRepository = value;
-    }
-
-    /**
-     * Ruft den Wert der documentation-Eigenschaft ab.
+     * <p>
+     * For example, to add a new item, do as follows:
+     * <pre>
+     *    getDocumentation().add(newItem);
+     * </pre>
      * 
-     * @return
-     *     possible object is
-     *     {@link DocumentationType }
-     *     
-     */
-    public DocumentationType getDocumentation() {
-        return documentation;
-    }
-
-    /**
-     * Legt den Wert der documentation-Eigenschaft fest.
      * 
-     * @param value
-     *     allowed object is
-     *     {@link DocumentationType }
-     *     
+     * <p>
+     * Objects of the following type(s) are allowed in the list
+     * {@link DocumentationType }
+     * 
+     * 
      */
-    public void setDocumentation(DocumentationType value) {
-        this.documentation = value;
+    public List<DocumentationType> getDocumentation() {
+        if (documentation == null) {
+            documentation = new ArrayList<DocumentationType>();
+        }
+        return this.documentation;
     }
 
     /**

@@ -2,7 +2,7 @@
 // Diese Datei wurde mit der JavaTM Architecture for XML Binding(JAXB) Reference Implementation, v2.2.8-b130911.1802 generiert 
 // Siehe <a href="http://java.sun.com/xml/jaxb">http://java.sun.com/xml/jaxb</a> 
 // �nderungen an dieser Datei gehen bei einer Neukompilierung des Quellschemas verloren. 
-// Generiert: 2017.06.05 um 01:52:16 PM CEST 
+// Generiert: 2017.06.05 um 04:15:35 PM CEST 
 //
 
 
@@ -17,16 +17,18 @@ import javax.xml.datatype.XMLGregorianCalendar;
 
 
 /**
- * <p>Java-Klasse f�r MetadataType complex type.
+ * <p>Java-Klasse f�r metadataType complex type.
  * 
  * <p>Das folgende Schemafragment gibt den erwarteten Content an, der in dieser Klasse enthalten ist.
  * 
  * <pre>
- * &lt;complexType name="MetadataType">
+ * &lt;complexType name="metadataType">
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element name="dcFormat" type="{}dcFormatType"/>
+ *         &lt;element name="dcFormat" type="{http://www.w3.org/2001/XMLSchema}string"/>
+ *         &lt;element name="dcMimeType" type="{http://www.w3.org/2001/XMLSchema}string"/>
+ *         &lt;element name="dcEncoding" type="{http://www.w3.org/2001/XMLSchema}string"/>
  *         &lt;element name="dcTitle" type="{http://www.w3.org/2001/XMLSchema}string"/>
  *         &lt;element name="dcDescription" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/>
  *         &lt;element name="dcCreator" type="{http://www.w3.org/2001/XMLSchema}string"/>
@@ -41,8 +43,10 @@ import javax.xml.datatype.XMLGregorianCalendar;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "MetadataType", propOrder = {
+@XmlType(name = "metadataType", propOrder = {
     "dcFormat",
+    "dcMimeType",
+    "dcEncoding",
     "dcTitle",
     "dcDescription",
     "dcCreator",
@@ -52,8 +56,11 @@ import javax.xml.datatype.XMLGregorianCalendar;
 public class MetadataType {
 
     @XmlElement(required = true)
-    @XmlSchemaType(name = "string")
-    protected DcFormatType dcFormat;
+    protected String dcFormat;
+    @XmlElement(required = true)
+    protected String dcMimeType;
+    @XmlElement(required = true)
+    protected String dcEncoding;
     @XmlElement(required = true)
     protected String dcTitle;
     protected String dcDescription;
@@ -70,10 +77,10 @@ public class MetadataType {
      * 
      * @return
      *     possible object is
-     *     {@link DcFormatType }
+     *     {@link String }
      *     
      */
-    public DcFormatType getDcFormat() {
+    public String getDcFormat() {
         return dcFormat;
     }
 
@@ -82,11 +89,59 @@ public class MetadataType {
      * 
      * @param value
      *     allowed object is
-     *     {@link DcFormatType }
+     *     {@link String }
      *     
      */
-    public void setDcFormat(DcFormatType value) {
+    public void setDcFormat(String value) {
         this.dcFormat = value;
+    }
+
+    /**
+     * Ruft den Wert der dcMimeType-Eigenschaft ab.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getDcMimeType() {
+        return dcMimeType;
+    }
+
+    /**
+     * Legt den Wert der dcMimeType-Eigenschaft fest.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setDcMimeType(String value) {
+        this.dcMimeType = value;
+    }
+
+    /**
+     * Ruft den Wert der dcEncoding-Eigenschaft ab.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
+     */
+    public String getDcEncoding() {
+        return dcEncoding;
+    }
+
+    /**
+     * Legt den Wert der dcEncoding-Eigenschaft fest.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
+     */
+    public void setDcEncoding(String value) {
+        this.dcEncoding = value;
     }
 
     /**

@@ -2,7 +2,7 @@
 // Diese Datei wurde mit der JavaTM Architecture for XML Binding(JAXB) Reference Implementation, v2.2.8-b130911.1802 generiert 
 // Siehe <a href="http://java.sun.com/xml/jaxb">http://java.sun.com/xml/jaxb</a> 
 // �nderungen an dieser Datei gehen bei einer Neukompilierung des Quellschemas verloren. 
-// Generiert: 2017.06.05 um 01:52:16 PM CEST 
+// Generiert: 2017.06.05 um 04:15:35 PM CEST 
 //
 
 
@@ -10,7 +10,6 @@ package at.tuwien.ss17.dp.lab3.datascience.model.dmp.javax;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;
 
 
@@ -24,9 +23,9 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element name="Metadata" type="{}MetadataType" minOccurs="0"/>
- *         &lt;element name="Preservation" type="{}PreservationType" minOccurs="0"/>
- *         &lt;element name="DataVolume" type="{}DataVolumeType" minOccurs="0"/>
+ *         &lt;element name="metadata" type="{}metadataType" minOccurs="0"/>
+ *         &lt;element name="preservation" type="{}preservationType" minOccurs="0"/>
+ *         &lt;element name="dataVolume" type="{}dataVolumeType" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -41,13 +40,10 @@ import javax.xml.bind.annotation.XmlType;
     "preservation",
     "dataVolume"
 })
-public class File {
+public class ExperimentFile {
 
-    @XmlElement(name = "Metadata")
     protected MetadataType metadata;
-    @XmlElement(name = "Preservation")
     protected PreservationType preservation;
-    @XmlElement(name = "DataVolume")
     protected DataVolumeType dataVolume;
 
     /**

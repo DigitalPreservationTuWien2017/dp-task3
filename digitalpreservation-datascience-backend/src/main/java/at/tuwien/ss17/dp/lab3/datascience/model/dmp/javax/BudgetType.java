@@ -15,17 +15,18 @@ import javax.xml.bind.annotation.XmlType;
 
 
 /**
- * <p>Java-Klasse f�r documentationType complex type.
+ * <p>Java-Klasse f�r budgetType complex type.
  * 
  * <p>Das folgende Schemafragment gibt den erwarteten Content an, der in dieser Klasse enthalten ist.
  * 
  * <pre>
- * &lt;complexType name="documentationType">
+ * &lt;complexType name="budgetType">
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element name="type" type="{http://www.w3.org/2001/XMLSchema}string"/>
- *         &lt;element name="location" type="{http://www.w3.org/2001/XMLSchema}string"/>
+ *         &lt;element name="position" type="{http://www.w3.org/2001/XMLSchema}string"/>
+ *         &lt;element name="costs" type="{http://www.w3.org/2001/XMLSchema}double"/>
+ *         &lt;element name="currency" type="{http://www.w3.org/2001/XMLSchema}string"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -35,63 +36,81 @@ import javax.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "documentationType", propOrder = {
-    "type",
-    "location"
+@XmlType(name = "budgetType", propOrder = {
+    "position",
+    "costs",
+    "currency"
 })
-public class DocumentationType {
+public class BudgetType {
 
     @XmlElement(required = true)
-    protected String type;
+    protected String position;
+    protected double costs;
     @XmlElement(required = true)
-    protected String location;
+    protected String currency;
 
     /**
-     * Ruft den Wert der type-Eigenschaft ab.
+     * Ruft den Wert der position-Eigenschaft ab.
      * 
      * @return
      *     possible object is
      *     {@link String }
      *     
      */
-    public String getType() {
-        return type;
+    public String getPosition() {
+        return position;
     }
 
     /**
-     * Legt den Wert der type-Eigenschaft fest.
+     * Legt den Wert der position-Eigenschaft fest.
      * 
      * @param value
      *     allowed object is
      *     {@link String }
      *     
      */
-    public void setType(String value) {
-        this.type = value;
+    public void setPosition(String value) {
+        this.position = value;
     }
 
     /**
-     * Ruft den Wert der location-Eigenschaft ab.
+     * Ruft den Wert der costs-Eigenschaft ab.
+     * 
+     */
+    public double getCosts() {
+        return costs;
+    }
+
+    /**
+     * Legt den Wert der costs-Eigenschaft fest.
+     * 
+     */
+    public void setCosts(double value) {
+        this.costs = value;
+    }
+
+    /**
+     * Ruft den Wert der currency-Eigenschaft ab.
      * 
      * @return
      *     possible object is
      *     {@link String }
      *     
      */
-    public String getLocation() {
-        return location;
+    public String getCurrency() {
+        return currency;
     }
 
     /**
-     * Legt den Wert der location-Eigenschaft fest.
+     * Legt den Wert der currency-Eigenschaft fest.
      * 
      * @param value
      *     allowed object is
      *     {@link String }
      *     
      */
-    public void setLocation(String value) {
-        this.location = value;
+    public void setCurrency(String value) {
+        this.currency = value;
     }
 
 }

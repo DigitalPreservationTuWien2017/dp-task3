@@ -2,54 +2,48 @@
 // Diese Datei wurde mit der JavaTM Architecture for XML Binding(JAXB) Reference Implementation, v2.2.8-b130911.1802 generiert 
 // Siehe <a href="http://java.sun.com/xml/jaxb">http://java.sun.com/xml/jaxb</a> 
 // �nderungen an dieser Datei gehen bei einer Neukompilierung des Quellschemas verloren. 
-// Generiert: 2017.06.05 um 01:52:16 PM CEST 
+// Generiert: 2017.06.05 um 04:15:35 PM CEST 
 //
 
 
 package at.tuwien.ss17.dp.lab3.datascience.model.dmp.javax;
 
 import javax.xml.bind.annotation.XmlEnum;
-import javax.xml.bind.annotation.XmlEnumValue;
 import javax.xml.bind.annotation.XmlType;
 
 
 /**
- * <p>Java-Klasse f�r dcFormatType.
+ * <p>Java-Klasse f�r unitType.
  * 
  * <p>Das folgende Schemafragment gibt den erwarteten Content an, der in dieser Klasse enthalten ist.
  * <p>
  * <pre>
- * &lt;simpleType name="dcFormatType">
+ * &lt;simpleType name="unitType">
  *   &lt;restriction base="{http://www.w3.org/2001/XMLSchema}string">
- *     &lt;enumeration value="json"/>
+ *     &lt;enumeration value="KB"/>
+ *     &lt;enumeration value="MB"/>
+ *     &lt;enumeration value="GB"/>
+ *     &lt;enumeration value="TB"/>
  *   &lt;/restriction>
  * &lt;/simpleType>
  * </pre>
  * 
  */
-@XmlType(name = "dcFormatType")
+@XmlType(name = "unitType")
 @XmlEnum
-public enum DcFormatType {
+public enum UnitType {
 
-    @XmlEnumValue("json")
-    JSON("json");
-    private final String value;
-
-    DcFormatType(String v) {
-        value = v;
-    }
+    KB,
+    MB,
+    GB,
+    TB;
 
     public String value() {
-        return value;
+        return name();
     }
 
-    public static DcFormatType fromValue(String v) {
-        for (DcFormatType c: DcFormatType.values()) {
-            if (c.value.equals(v)) {
-                return c;
-            }
-        }
-        throw new IllegalArgumentException(v);
+    public static UnitType fromValue(String v) {
+        return valueOf(v);
     }
 
 }

@@ -2,32 +2,38 @@
 	<xs:element name="DataManagementPlan">
 		<xs:complexType>
 			<xs:sequence>
-				<xs:element name="File" minOccurs="0" maxOccurs="1">
+				<xs:element type="dataRepositoryType" name="dataRepository" minOccurs="1" maxOccurs="1"/>
+				<xs:element type="ethicsPrivacyType" name="ethicsPrivacy" minOccurs="0" maxOccurs="unbounded"/>
+				<xs:element type="rolesAndResponsibilitiesType" name="rolesAndResponsibilities" minOccurs="1" maxOccurs="unbounded"/>
+				<xs:element type="budgetType" name="budget" minOccurs="1" maxOccurs="unbounded"/>
+				<xs:element name="experimentFile" minOccurs="0" maxOccurs="1">
 					<xs:complexType>
 						<xs:sequence>
-							<xs:element type="MetadataType" name="Metadata" minOccurs="0" maxOccurs="1"/>
-							<xs:element type="PreservationType" name="Preservation" minOccurs="0" maxOccurs="1"/>
-							<xs:element type="DataVolumeType" name="DataVolume" minOccurs="0" maxOccurs="1"/>
+							<xs:element type="metadataType" name="metadata" minOccurs="1" maxOccurs="1"/>
+							<xs:element type="preservationType" name="preservation" minOccurs="1" maxOccurs="1"/>
+							<xs:element type="dataVolumeType" name="dataVolume" minOccurs="0" maxOccurs="1"/>
 						</xs:sequence>
 					</xs:complexType>
 				</xs:element>
-				<xs:element name="SourceCode" minOccurs="0" maxOccurs="1">
+				<xs:element name="sourceCode" minOccurs="0" maxOccurs="1">
 					<xs:complexType>
 						<xs:sequence>
-							<xs:element type="PreservationType" name="Preservation" minOccurs="0" maxOccurs="1"/>
-							<xs:element type="DataVolumeType" name="DataVolume" minOccurs="0" maxOccurs="1"/>
-							<xs:element type="DataRepositoryType" name="DataRepository" minOccurs="0" maxOccurs="1"/>
-							<xs:element type="DocumentationType" name="Documentation" minOccurs="0" maxOccurs="1"/>
-							<xs:element type="IntellectualPropertyRightsType" name="IntellectualPropertyRights" minOccurs="1" maxOccurs="1"/>
+							<xs:element type="metadataType" name="metadata" minOccurs="1" maxOccurs="1"/>
+							<xs:element type="preservationType" name="preservation" minOccurs="1" maxOccurs="1"/>
+							<xs:element type="dataVolumeType" name="dataVolume" minOccurs="1" maxOccurs="1"/>
+							<xs:element type="documentationType" name="documentation" minOccurs="1" maxOccurs="unbounded"/>
+							<xs:element type="intellectualPropertyRightsType" name="intellectualPropertyRights" minOccurs="1" maxOccurs="1"/>
 						</xs:sequence>
 					</xs:complexType>
 				</xs:element>
 			</xs:sequence>
 		</xs:complexType>
 	</xs:element>
-	<xs:complexType name="MetadataType">
+	<xs:complexType name="metadataType">
 	  <xs:sequence>
-			<xs:element name="dcFormat" type="dcFormatType" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="dcFormat" type="xs:string" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="dcMimeType" type="xs:string" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="dcEncoding" type="xs:string" minOccurs="1" maxOccurs="1"/>
 			<xs:element name="dcTitle" type="xs:string" minOccurs="1" maxOccurs="1"/>
 			<xs:element name="dcDescription" type="xs:string" minOccurs="0" maxOccurs="1"/>
 			<xs:element name="dcCreator" type="xs:string" minOccurs="1" maxOccurs="1"/>
@@ -35,36 +41,61 @@
 			<xs:element name="dcDate" type="xs:date" minOccurs="1" maxOccurs="1"/>			
 	  </xs:sequence>
 	</xs:complexType>
-	<xs:complexType name="PreservationType">
+	<xs:complexType name="preservationType">
 	  <xs:sequence>
-			<xs:element name="test3" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="backupStorageURI" type="xs:string" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="backupsInCronFormat" type="xs:string" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="retentionDurationInDays" type="xs:double" minOccurs="1" maxOccurs="1"/>
 	  </xs:sequence>
 	</xs:complexType>
-	<xs:complexType name="DataVolumeType">
+	<xs:complexType name="dataVolumeType">
 	  <xs:sequence>
-			<xs:element name="test4" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="amount" type="xs:double" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="unit" type="unitType" minOccurs="1" maxOccurs="1"/>
 	  </xs:sequence>
 	</xs:complexType>
-	<xs:complexType name="DataRepositoryType">
+	<xs:complexType name="dataRepositoryType">
 	  <xs:sequence>
-			<xs:element name="test5" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="doi" type="xs:string" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="repositoryURI" type="xs:string" minOccurs="1" maxOccurs="unbounded"/>
 	  </xs:sequence>
 	</xs:complexType>
-	<xs:complexType name="DocumentationType">
+	<xs:complexType name="documentationType">
 	  <xs:sequence>
-			<xs:element name="test6" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="type" type="xs:string" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="location" type="xs:string" minOccurs="1" maxOccurs="1"/>
 	  </xs:sequence>
 	</xs:complexType>	
-	<xs:complexType name="IntellectualPropertyRightsType">
+	<xs:complexType name="intellectualPropertyRightsType">
 	  <xs:sequence>
 			<xs:element name="license" type="xs:string" minOccurs="1" maxOccurs="1"/>
 	  </xs:sequence>
 	</xs:complexType>
-
-	
-	<xs:simpleType name="dcFormatType">
+	<xs:simpleType name="unitType">
 		<xs:restriction base="xs:string">
-			<xs:enumeration value="json"/>
+			<xs:enumeration value="KB"/>
+			<xs:enumeration value="MB"/>
+			<xs:enumeration value="GB"/>
+			<xs:enumeration value="TB"/>
 		</xs:restriction>
-	</xs:simpleType>
+	</xs:simpleType>	
+	<xs:complexType name="ethicsPrivacyType">
+	  <xs:sequence>
+			<xs:element name="issue" type="xs:string" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="solution" type="xs:string" minOccurs="1" maxOccurs="1"/>
+	  </xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="rolesAndResponsibilitiesType">
+	  <xs:sequence>
+			<xs:element name="roleName" type="xs:string" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="responsibilitiesDescription" type="xs:string" minOccurs="1" maxOccurs="1"/>
+	  </xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="budgetType">
+	  <xs:sequence>
+			<xs:element name="position" type="xs:string" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="costs" type="xs:double" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="currency" type="xs:string" minOccurs="1" maxOccurs="1"/>
+	  </xs:sequence>
+	</xs:complexType>
 </xs:schema>
