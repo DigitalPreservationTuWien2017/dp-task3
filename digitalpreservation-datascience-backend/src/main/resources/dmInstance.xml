@@ -1,0 +1,18 @@
+<DataManagementPlan>
+	<File>
+		<Metadata>
+			<test2>test</test2>
+		</Metadata>	
+		<EthicsAndPrivacy>
+			<test2>test</test2>
+		</EthicsAndPrivacy>
+	</File>
+	<SourceCode>
+		<DataVolume>
+			<test4>test</test4>
+		</DataVolume>
+		<IntellectualPropertyRights>
+			<license>test</license>
+		</IntellectualPropertyRights>
+	</SourceCode>
+</DataManagementPlan>

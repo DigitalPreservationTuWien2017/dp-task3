@@ -1,0 +1,72 @@
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+	<xs:element name="DataManagementPlan">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="File" minOccurs="0" maxOccurs="1">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element type="MetadataType" name="Metadata" minOccurs="0" maxOccurs="1"/>
+							<xs:element type="EthicsAndPrivacyType" name="EthicsAndPrivacy" minOccurs="0" maxOccurs="1"/>
+							<xs:element type="PreservationType" name="Preservation" minOccurs="0" maxOccurs="1"/>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="SourceCode" minOccurs="0" maxOccurs="1">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element type="DataVolumeType" name="DataVolume" minOccurs="0" maxOccurs="1"/>
+							<xs:element type="DataRepositoryType" name="DataRepository" minOccurs="0" maxOccurs="1"/>
+							<xs:element type="DocumentationType" name="Documentation" minOccurs="0" maxOccurs="1"/>
+							<xs:element type="IntellectualPropertyRightsType" name="IntellectualPropertyRights" minOccurs="1" maxOccurs="1"/>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:complexType name="MetadataType">
+	  <xs:sequence>
+			<xs:element name="test1" type="xs:string" minOccurs="0" maxOccurs="1"/>
+	  </xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="EthicsAndPrivacyType">
+	  <xs:sequence>
+			<xs:element name="test2" type="xs:string" minOccurs="0" maxOccurs="1"/>
+	  </xs:sequence>
+	</xs:complexType>	
+	<xs:complexType name="PreservationType">
+	  <xs:sequence>
+			<xs:element name="test3" type="xs:string" minOccurs="0" maxOccurs="1"/>
+	  </xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="DataVolumeType">
+	  <xs:sequence>
+			<xs:element name="test4" type="xs:string" minOccurs="0" maxOccurs="1"/>
+	  </xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="DataRepositoryType">
+	  <xs:sequence>
+			<xs:element name="test5" type="xs:string" minOccurs="0" maxOccurs="1"/>
+	  </xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="DocumentationType">
+	  <xs:sequence>
+			<xs:element name="test6" type="xs:string" minOccurs="0" maxOccurs="1"/>
+	  </xs:sequence>
+	</xs:complexType>	
+	<xs:complexType name="IntellectualPropertyRightsType">
+	  <xs:sequence>
+			<xs:element name="license" type="xs:string" minOccurs="1" maxOccurs="1"/>
+	  </xs:sequence>
+	</xs:complexType>	
+	<!--
+	<xs:simpleType name="taskElementsType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="image"/>
+			<xs:enumeration value="checkbox"/>
+			<xs:enumeration value="textbox"/>
+			<xs:enumeration value="file"/>
+			<xs:enumeration value="slider"/>
+		</xs:restriction>
+	</xs:simpleType>-->
+</xs:schema>
