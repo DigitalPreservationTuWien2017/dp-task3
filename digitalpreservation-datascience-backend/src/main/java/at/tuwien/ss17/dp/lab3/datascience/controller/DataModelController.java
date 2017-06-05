@@ -12,6 +12,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletResponse;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -27,11 +28,48 @@ public class DataModelController {
 	@RequestMapping(value = "/validateDataModelInstance", method = RequestMethod.POST,
 			consumes = MediaType.APPLICATION_XML_VALUE)
 	@ResponseStatus(HttpStatus.OK)
+	@CrossOrigin(origins = "*")
 	public DmpModel validateDataModelInstance(@RequestBody String xml) throws DataModelInstanceValidationException{
 		logger.info("Request Receive - validateDataModelInstance");
-		dmpModelService.validateAndUnmarshalModelInstance(xml);
+		DmpModel dmpModel = dmpModelService.validateAndUnmarshalModelInstance(xml);
 
-		return null;
+		//TODO remove
+        DmpModel m = new DmpModel();
+        m.setNodeKeyProperty("id");
+
+        List<NodeDataArray> ndaList = new ArrayList<>();
+        NodeDataArray nda = new NodeDataArray();
+        nda.setId(0);
+        nda.setLoc("120 120");
+        nda.setText("Initial");
+        ndaList.add(nda);
+        nda = new NodeDataArray();
+        nda.setId(1);
+        nda.setLoc("330 120");
+        nda.setText("First down");
+        ndaList.add(nda);
+
+        m.setNodeDataArray(ndaList);
+
+        List<LinkDataArray> ldaList = new ArrayList<>();
+        LinkDataArray lda = new LinkDataArray();
+        lda.setFrom(0);
+        lda.setTo(0);
+        lda.setText("up or timer");
+        lda.setCurviness(-20);
+        ldaList.add(lda);
+        lda = new LinkDataArray();
+        lda.setFrom(0);
+        lda.setTo(1);
+        lda.setText("down");
+        lda.setCurviness(20);
+        ldaList.add(lda);
+
+        m.setLinkDataArray(ldaList);
+
+
+
+		return m;
 	}
 
 
