@@ -5,7 +5,8 @@ angular.module('ionicApp', ['ionic','chart.js'])
     "use strict";
     $scope.graph = {};
 
-    $http.get('http://localhost:9000/getApiData')
+//    $http.get('http://localhost:9000/getApiData')
+    $http.get('rawdata.json')
         .then(function(res){
             console.log(res.data.data[0])
             $scope.graph = res.data.data[0];
