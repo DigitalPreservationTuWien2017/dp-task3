@@ -31,45 +31,7 @@ public class DataModelController {
 	@CrossOrigin(origins = "*")
 	public DmpModel validateDataModelInstance(@RequestBody String xml, HttpServletResponse response) throws DataModelInstanceValidationException{
 		logger.info("Request Receive - validateDataModelInstance");
-		DmpModel dmpModel = dmpModelService.validateAndUnmarshalModelInstance(xml);
-
-		//TODO remove
-        /*dmpModel = new DmpModel();
-        dmpModel.setNodeKeyProperty("id");
-
-        List<NodeDataArray> ndaList = new ArrayList<>();
-        NodeDataArray nda = new NodeDataArray();
-        nda.setId(0);
-        nda.setLoc("120 120");
-        nda.setText("Initial");
-        ndaList.add(nda);
-        nda = new NodeDataArray();
-        nda.setId(1);
-        nda.setLoc("330 120");
-        nda.setText("First down");
-        ndaList.add(nda);
-
-        dmpModel.setNodeDataArray(ndaList);
-
-        List<LinkDataArray> ldaList = new ArrayList<>();
-        LinkDataArray lda = new LinkDataArray();
-        lda.setFrom(0);
-        lda.setTo(0);
-        lda.setText("up or timer");
-        lda.setCurviness(-20);
-        ldaList.add(lda);
-        lda = new LinkDataArray();
-        lda.setFrom(0);
-        lda.setTo(1);
-        lda.setText("down");
-        lda.setCurviness(10);
-        ldaList.add(lda);
-
-        dmpModel.setLinkDataArray(ldaList);*/
-
-
-
-		return dmpModel;
+		return dmpModelService.validateAndUnmarshalModelInstance(xml);
 	}
 
 

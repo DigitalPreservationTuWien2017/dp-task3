@@ -55,6 +55,10 @@ XSD schema can be found here:
     
     digitalpreservation-datascience-backend\src\main\resources\dmp.xsd
 
+#### API Documentation
+
+http://localhost:9000/swagger-ui.html
+
 ##### Landing page - API usage
 
 Post XML (application/xml) to resource:
