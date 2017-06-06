@@ -30,6 +30,17 @@ public class LinkDataArray {
     @JsonIgnore
     private Map<String, Object> additionalProperties = new HashMap<String, Object>();
 
+    public LinkDataArray(){
+
+    }
+
+    public LinkDataArray(Integer from, Integer to, String text, Integer curviness){
+        this.from = from;
+        this.to = to;
+        this.text = text;
+        this.curviness = curviness;
+    }
+
     @JsonProperty("from")
     public Integer getFrom() {
         return from;

@@ -34,7 +34,7 @@ public class DataModelController {
 		DmpModel dmpModel = dmpModelService.validateAndUnmarshalModelInstance(xml);
 
 		//TODO remove
-        dmpModel = new DmpModel();
+        /*dmpModel = new DmpModel();
         dmpModel.setNodeKeyProperty("id");
 
         List<NodeDataArray> ndaList = new ArrayList<>();
@@ -65,7 +65,7 @@ public class DataModelController {
         lda.setCurviness(10);
         ldaList.add(lda);
 
-        dmpModel.setLinkDataArray(ldaList);
+        dmpModel.setLinkDataArray(ldaList);*/
 
 
 

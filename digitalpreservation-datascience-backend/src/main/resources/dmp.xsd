@@ -21,7 +21,7 @@
 							<xs:element type="metadataType" name="metadata" minOccurs="1" maxOccurs="1"/>
 							<xs:element type="preservationType" name="preservation" minOccurs="1" maxOccurs="1"/>
 							<xs:element type="dataVolumeType" name="dataVolume" minOccurs="1" maxOccurs="1"/>
-							<xs:element type="documentationType" name="documentation" minOccurs="1" maxOccurs="unbounded"/>
+							<xs:element type="documentationType" name="documentation" minOccurs="1" maxOccurs="1"/>
 							<xs:element type="intellectualPropertyRightsType" name="intellectualPropertyRights" minOccurs="1" maxOccurs="1"/>
 						</xs:sequence>
 					</xs:complexType>
@@ -57,7 +57,7 @@
 	<xs:complexType name="dataRepositoryType">
 	  <xs:sequence>
 			<xs:element name="doi" type="xs:string" minOccurs="1" maxOccurs="1"/>
-			<xs:element name="repositoryURI" type="xs:string" minOccurs="1" maxOccurs="unbounded"/>
+			<xs:element name="repositoryURI" type="xs:string" minOccurs="1" maxOccurs="1"/>
 	  </xs:sequence>
 	</xs:complexType>
 	<xs:complexType name="documentationType">

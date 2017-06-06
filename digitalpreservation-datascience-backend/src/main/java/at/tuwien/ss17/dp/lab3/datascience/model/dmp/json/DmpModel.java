@@ -1,6 +1,7 @@
 
 package at.tuwien.ss17.dp.lab3.datascience.model.dmp.json;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -48,6 +49,15 @@ public class DmpModel {
         this.nodeDataArray = nodeDataArray;
     }
 
+
+    public void addNodeDataArray(NodeDataArray nodeDataArray) {
+        if (this.nodeDataArray == null)
+            this.nodeDataArray = new ArrayList<>();
+        this.nodeDataArray.add(nodeDataArray);
+    }
+
+
+
     @JsonProperty("linkDataArray")
     public List<LinkDataArray> getLinkDataArray() {
         return linkDataArray;
@@ -56,6 +66,12 @@ public class DmpModel {
     @JsonProperty("linkDataArray")
     public void setLinkDataArray(List<LinkDataArray> linkDataArray) {
         this.linkDataArray = linkDataArray;
+    }
+
+    public void addLinkDataArray(LinkDataArray linkDataArray) {
+        if (this.linkDataArray == null)
+            this.linkDataArray = new ArrayList<>();
+        this.linkDataArray.add(linkDataArray);
     }
 
     @JsonAnyGetter

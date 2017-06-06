@@ -2,7 +2,7 @@
 // Diese Datei wurde mit der JavaTM Architecture for XML Binding(JAXB) Reference Implementation, v2.2.8-b130911.1802 generiert 
 // Siehe <a href="http://java.sun.com/xml/jaxb">http://java.sun.com/xml/jaxb</a> 
 // �nderungen an dieser Datei gehen bei einer Neukompilierung des Quellschemas verloren. 
-// Generiert: 2017.06.05 um 04:15:35 PM CEST 
+// Generiert: 2017.06.06 um 11:17:38 AM CEST 
 //
 
 
@@ -10,6 +10,7 @@ package at.tuwien.ss17.dp.lab3.datascience.model.dmp.javax;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;
 
 
@@ -23,8 +24,8 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element name="metadata" type="{}metadataType" minOccurs="0"/>
- *         &lt;element name="preservation" type="{}preservationType" minOccurs="0"/>
+ *         &lt;element name="metadata" type="{}metadataType"/>
+ *         &lt;element name="preservation" type="{}preservationType"/>
  *         &lt;element name="dataVolume" type="{}dataVolumeType" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
@@ -42,7 +43,9 @@ import javax.xml.bind.annotation.XmlType;
 })
 public class ExperimentFile {
 
+    @XmlElement(required = true)
     protected MetadataType metadata;
+    @XmlElement(required = true)
     protected PreservationType preservation;
     protected DataVolumeType dataVolume;
 

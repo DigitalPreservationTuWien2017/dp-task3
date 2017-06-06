@@ -2,14 +2,12 @@
 // Diese Datei wurde mit der JavaTM Architecture for XML Binding(JAXB) Reference Implementation, v2.2.8-b130911.1802 generiert 
 // Siehe <a href="http://java.sun.com/xml/jaxb">http://java.sun.com/xml/jaxb</a> 
 // �nderungen an dieser Datei gehen bei einer Neukompilierung des Quellschemas verloren. 
-// Generiert: 2017.06.05 um 04:15:35 PM CEST 
+// Generiert: 2017.06.06 um 11:17:38 AM CEST 
 //
 
 
 package at.tuwien.ss17.dp.lab3.datascience.model.dmp.javax;
 
-import java.util.ArrayList;
-import java.util.List;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
@@ -26,10 +24,10 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element name="metadata" type="{}metadataType" minOccurs="0"/>
+ *         &lt;element name="metadata" type="{}metadataType"/>
  *         &lt;element name="preservation" type="{}preservationType"/>
  *         &lt;element name="dataVolume" type="{}dataVolumeType"/>
- *         &lt;element name="documentation" type="{}documentationType" maxOccurs="unbounded"/>
+ *         &lt;element name="documentation" type="{}documentationType"/>
  *         &lt;element name="intellectualPropertyRights" type="{}intellectualPropertyRightsType"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
@@ -49,13 +47,14 @@ import javax.xml.bind.annotation.XmlType;
 })
 public class SourceCode {
 
+    @XmlElement(required = true)
     protected MetadataType metadata;
     @XmlElement(required = true)
     protected PreservationType preservation;
     @XmlElement(required = true)
     protected DataVolumeType dataVolume;
     @XmlElement(required = true)
-    protected List<DocumentationType> documentation;
+    protected DocumentationType documentation;
     @XmlElement(required = true)
     protected IntellectualPropertyRightsType intellectualPropertyRights;
 
@@ -132,32 +131,27 @@ public class SourceCode {
     }
 
     /**
-     * Gets the value of the documentation property.
+     * Ruft den Wert der documentation-Eigenschaft ab.
      * 
-     * <p>
-     * This accessor method returns a reference to the live list,
-     * not a snapshot. Therefore any modification you make to the
-     * returned list will be present inside the JAXB object.
-     * This is why there is not a <CODE>set</CODE> method for the documentation property.
-     * 
-     * <p>
-     * For example, to add a new item, do as follows:
-     * <pre>
-     *    getDocumentation().add(newItem);
-     * </pre>
-     * 
-     * 
-     * <p>
-     * Objects of the following type(s) are allowed in the list
-     * {@link DocumentationType }
-     * 
-     * 
+     * @return
+     *     possible object is
+     *     {@link DocumentationType }
+     *     
      */
-    public List<DocumentationType> getDocumentation() {
-        if (documentation == null) {
-            documentation = new ArrayList<DocumentationType>();
-        }
-        return this.documentation;
+    public DocumentationType getDocumentation() {
+        return documentation;
+    }
+
+    /**
+     * Legt den Wert der documentation-Eigenschaft fest.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link DocumentationType }
+     *     
+     */
+    public void setDocumentation(DocumentationType value) {
+        this.documentation = value;
     }
 
     /**

@@ -27,6 +27,18 @@ public class NodeDataArray {
     @JsonIgnore
     private Map<String, Object> additionalProperties = new HashMap<String, Object>();
 
+    public NodeDataArray(){
+
+    }
+
+    public NodeDataArray(Integer id, String  loc, String text){
+        this.id = id;
+        this.loc = loc;
+        this.text = text;
+    }
+
+
+
     @JsonProperty("id")
     public Integer getId() {
         return id;

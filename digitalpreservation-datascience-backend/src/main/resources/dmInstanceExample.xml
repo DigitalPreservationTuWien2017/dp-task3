@@ -1,37 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
 <DataManagementPlan>
   <dataRepository>
-    <doi>str1234</doi>
-    <repositoryURI>str1234</repositoryURI>
+    <doi>doi</doi>
+    <repositoryURI>repositoryURI</repositoryURI>
   </dataRepository>
   <ethicsPrivacy>
-    <issue>str1234</issue>
-    <solution>str1234</solution>
+    <issue>issue</issue>
+    <solution>solution</solution>
   </ethicsPrivacy>
   <rolesAndResponsibilities>
-    <roleName>str1234</roleName>
-    <responsibilitiesDescription>str1234</responsibilitiesDescription>
+    <roleName>roleName</roleName>
+    <responsibilitiesDescription>responsibilitiesDescription</responsibilitiesDescription>
   </rolesAndResponsibilities>
   <budget>
-    <position>str1234</position>
-    <costs>3.1415926535</costs>
-    <currency>str1234</currency>
+    <position>position</position>
+    <costs>3</costs>
+    <currency>currency</currency>
   </budget>
   <experimentFile>
     <metadata>
-      <dcFormat>str1234</dcFormat>
-      <dcMimeType>str1234</dcMimeType>
-      <dcEncoding>str1234</dcEncoding>
-      <dcTitle>str1234</dcTitle>
-      <dcDescription>str1234</dcDescription>
-      <dcCreator>str1234</dcCreator>
-      <dcSource>str1234</dcSource>
+      <dcFormat>dcFormat</dcFormat>
+      <dcMimeType>dcMimeType</dcMimeType>
+      <dcEncoding>dcEncoding</dcEncoding>
+      <dcTitle>dcTitle</dcTitle>
+      <dcDescription>dcDescription</dcDescription>
+      <dcCreator>dcCreator</dcCreator>
+      <dcSource>dcSource</dcSource>
       <dcDate>2012-12-13</dcDate>
     </metadata>
     <preservation>
-      <backupStorageURI>str1234</backupStorageURI>
-      <backupsInCronFormat>str1234</backupsInCronFormat>
-      <retentionDurationInDays>3.1415926535</retentionDurationInDays>
+      <backupStorageURI>backupStorageURI</backupStorageURI>
+      <backupsInCronFormat>backupsInCronFormat</backupsInCronFormat>
+      <retentionDurationInDays>3</retentionDurationInDays>
     </preservation>
     <dataVolume>
       <amount>3.1415926535</amount>
@@ -40,30 +40,30 @@
   </experimentFile>
   <sourceCode>
     <metadata>
-      <dcFormat>str1234</dcFormat>
-      <dcMimeType>str1234</dcMimeType>
-      <dcEncoding>str1234</dcEncoding>
-      <dcTitle>str1234</dcTitle>
-      <dcDescription>str1234</dcDescription>
-      <dcCreator>str1234</dcCreator>
-      <dcSource>str1234</dcSource>
+      <dcFormat>dcFormat</dcFormat>
+      <dcMimeType>dcMimeType</dcMimeType>
+      <dcEncoding>dcEncoding</dcEncoding>
+      <dcTitle>dcTitle</dcTitle>
+      <dcDescription>dcDescription</dcDescription>
+      <dcCreator>dcCreator</dcCreator>
+      <dcSource>dcSource</dcSource>
       <dcDate>2012-12-13</dcDate>
     </metadata>
     <preservation>
-      <backupStorageURI>str1234</backupStorageURI>
-      <backupsInCronFormat>str1234</backupsInCronFormat>
-      <retentionDurationInDays>3.1415926535</retentionDurationInDays>
+      <backupStorageURI>backupStorageURI</backupStorageURI>
+      <backupsInCronFormat>backupsInCronFormat</backupsInCronFormat>
+      <retentionDurationInDays>3</retentionDurationInDays>
     </preservation>
     <dataVolume>
       <amount>3.1415926535</amount>
       <unit>KB</unit>
     </dataVolume>
     <documentation>
-      <type>str1234</type>
-      <location>str1234</location>
+      <type>type</type>
+      <location>location</location>
     </documentation>
     <intellectualPropertyRights>
-      <license>str1234</license>
+      <license>license</license>
     </intellectualPropertyRights>
   </sourceCode>
 </DataManagementPlan>
