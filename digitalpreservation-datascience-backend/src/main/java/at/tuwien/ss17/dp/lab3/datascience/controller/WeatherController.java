@@ -6,6 +6,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import at.tuwien.ss17.dp.lab3.datascience.model.Weather;
@@ -20,7 +21,7 @@ public class WeatherController {
 	@Autowired
 	private WeatherService weatherService;
 	
-	@RequestMapping(value="/findAll")
+	@RequestMapping(value="/findAll", method = RequestMethod.GET)
 	public List<Weather> getAllChannels(){
 		logger.info("Request Receive- getAllChannels");
 		return weatherService.findAll();

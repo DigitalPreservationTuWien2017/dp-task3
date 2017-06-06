@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DataManagementPlan>
+	<dataRepository>
+		<doi>802363</doi>
+		<repositoryURI>https://doi.org/10.5281/zenodo.802363</repositoryURI>
+	</dataRepository>
+	<ethicsPrivacy>
+		<issue>issue 1</issue>
+		<solution>solution 1</solution>
+	</ethicsPrivacy>
+	<rolesAndResponsibilities>
+		<roleName>researcher</roleName>
+		<responsibilitiesDescription>doing research</responsibilitiesDescription>
+	</rolesAndResponsibilities>
+	<budget>
+		<position>backup</position>
+		<costs>30</costs>
+		<currency>euro</currency>
+	</budget>
+	<experimentFile>
+		<metadata>
+			<dcFormat>json</dcFormat>
+			<dcMimeType>application/json</dcMimeType>
+			<dcEncoding>utf-8</dcEncoding>
+			<dcTitle>experiment-1</dcTitle>
+			<dcDescription>experiment 1 description</dcDescription>
+			<dcCreator>Daniel Hofer</dcCreator>
+			<dcSource>http://at-wetter.tk</dcSource>
+			<dcDate>2017-06-06</dcDate>
+		</metadata>
+		<preservation>
+			<backupStorageURI>https://github.com/DigitalPreservationTuWien2017/dp-task3</backupStorageURI>
+			<backupsInCronFormat>0 2 * * *</backupsInCronFormat>
+			<retentionDurationInDays>365</retentionDurationInDays>
+		</preservation>
+		<dataVolume>
+			<amount>3.15</amount>
+			<unit>MB</unit>
+		</dataVolume>
+	</experimentFile>
+	<sourceCode>
+		<metadata>
+			<dcFormat>java</dcFormat>
+			<dcMimeType>application/text</dcMimeType>
+			<dcEncoding>utf-8</dcEncoding>
+			<dcTitle>experiment-2</dcTitle>
+			<dcDescription>experiment 2 description</dcDescription>
+			<dcCreator>Daniel Hofer</dcCreator>
+			<dcSource>Repository</dcSource>
+			<dcDate>2017-06-06</dcDate>
+		</metadata>
+		<preservation>
+			<backupStorageURI>https://github.com/DigitalPreservationTuWien2017/dp-task3</backupStorageURI>
+			<backupsInCronFormat>0 2 * * *</backupsInCronFormat>
+			<retentionDurationInDays>365</retentionDurationInDays>
+		</preservation>
+		<dataVolume>
+			<amount>31.1</amount>
+			<unit>MB</unit>
+		</dataVolume>
+		<documentation>
+			<type>README</type>
+			<location>https://github.com/DigitalPreservationTuWien2017/dp-task3/blob/master/README.md</location>
+		</documentation>
+		<intellectualPropertyRights>
+			<license>https://opensource.org/licenses/MIT</license>
+		</intellectualPropertyRights>
+	</sourceCode>
+</DataManagementPlan>
