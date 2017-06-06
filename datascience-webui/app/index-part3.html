@@ -21,17 +21,7 @@
                       // enable undo & redo
                       "undoManager.isEnabled": true
                   });
-          // when the document is modified, add a "*" to the title and enable the "Save" button
-        /*  myDiagram.addDiagramListener("Modified", function(e) {
-              var button = document.getElementById("SaveButton");
-              if (button) button.disabled = !myDiagram.isModified;
-              var idx = document.title.indexOf("*");
-              if (myDiagram.isModified) {
-                  if (idx < 0) document.title += "*";
-              } else {
-                  if (idx >= 0) document.title = document.title.substr(0, idx);
-              }
-          });*/
+
           // define the Node template
           myDiagram.nodeTemplate =
               $(go.Node, "Auto",
@@ -54,22 +44,6 @@
                       },
                       new go.Binding("text").makeTwoWay())
               );
-          // unlike the normal selection Adornment, this one includes a Button
-         /* myDiagram.nodeTemplate.selectionAdornmentTemplate =
-              $(go.Adornment, "Spot",
-                  $(go.Panel, "Auto",
-                      $(go.Shape, { fill: null, stroke: "blue", strokeWidth: 2 }),
-                      $(go.Placeholder)  // a Placeholder sizes itself to the selected Node
-                  ),
-                  // the button to create a "next" node, at the top-right corner
-                  $("Button",
-                      {
-                          alignment: go.Spot.TopRight,
-                          click: addNodeAndLink  // this function is defined below
-                      },
-                      $(go.Shape, "PlusLine", { width: 6, height: 6 })
-                  ) // end button
-              ); // end Adornment*/
           // clicking the button inserts a new node to the right of the selected node,
           // and adds a link to that new node
           function addNodeAndLink(e, obj) {
@@ -102,38 +76,6 @@
               // if the new node is off-screen, scroll the diagram to show the new node
               diagram.scrollToRect(newnode.actualBounds);
           }
-          // replace the default Link template in the linkTemplateMap
-         /* myDiagram.linkTemplate =
-              $(go.Link,  // the whole link panel
-                  {
-                      curve: go.Link.Bezier, adjusting: go.Link.Stretch,
-                      reshapable: true, relinkableFrom: true, relinkableTo: true,
-                      toShortLength: 3
-                  },
-                  new go.Binding("points").makeTwoWay(),
-                  new go.Binding("curviness"),
-                  $(go.Shape,  // the link shape
-                      { strokeWidth: 1.5 }),
-                  $(go.Shape,  // the arrowhead
-                      { toArrow: "standard", stroke: null }),
-                  $(go.Panel, "Auto",
-                      $(go.Shape,  // the label background, which becomes transparent around the edges
-                          {
-                              fill: $(go.Brush, "Radial",
-                                  { 0: "rgb(240, 240, 240)", 0.3: "rgb(240, 240, 240)", 1: "rgba(240, 240, 240, 0)" }),
-                              stroke: null
-                          }),
-                      $(go.TextBlock, "transition",  // the label text
-                          {
-                              textAlign: "center",
-                              font: "9pt helvetica, arial, sans-serif",
-                              margin: 4,
-                              editable: true  // enable in-place editing
-                          },
-                          // editing the text automatically updates the model data
-                          new go.Binding("text").makeTwoWay())
-                  )
-              );*/
 
           //reset default xml datamodel instance and validate & draw model
           reset();
@@ -159,8 +101,6 @@
           xhttp.setRequestHeader("Content-type", "application/xml");
           xhttp.send(document.getElementById("mySavedModel").value);
 
-          console.log(xhttp.status);
-          console.log(xhttp.responseText);
 
           if (xhttp.status == 200) {
               var response = JSON.parse(xhttp.responseText);
@@ -192,7 +132,7 @@
         <button onclick="reset()">reset</button>
       Model instance in XML format:
     </div>
-    <textarea id="mySavedModel" style="width:100%;height:300px">
+    <textarea id="mySavedModel" style="width:100%;height:400px">
 
     </textarea>
   </div>

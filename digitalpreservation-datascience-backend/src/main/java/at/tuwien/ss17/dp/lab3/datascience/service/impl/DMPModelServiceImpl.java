@@ -27,6 +27,14 @@ import at.tuwien.ss17.dp.lab3.datascience.model.dmp.json.DmpModel;
 @Service(value="DMPModelService")
 public class DMPModelServiceImpl implements DMPModelService {
 
+    int id = 0;
+    int locX = 120;
+    int locY = 120;
+    int lvl0RootId = 0;
+    int lvl1RootId = 0;
+    int lvl2RootId = 0;
+    final int X_OFFSET = 300;
+    final int Y_OFFSET = 140;
     private final String XSD_LOCATION = "classpath:dmp.xsd";
     private SchemaFactory sf = SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI);
     private static final String TEMPLATE_XSD_FILE_NAME = new String("dmp.xsd");
@@ -34,7 +42,7 @@ public class DMPModelServiceImpl implements DMPModelService {
     @Override
     public DmpModel validateAndUnmarshalModelInstance(String xml) throws DataModelInstanceValidationException {
 
-        // VALIDATE
+        // validate xml against xsd specification
         try{
 
             URL schemaFile = new URL(XSD_LOCATION);
@@ -78,11 +86,8 @@ public class DMPModelServiceImpl implements DMPModelService {
         }
 
 
-        // UNMARSHAL
         DataManagementPlan dmp = null;
-
         try {
-
             ClassLoader classLoader = getClass().getClassLoader();
             Schema schema = sf.newSchema(new File(classLoader.getResource(TEMPLATE_XSD_FILE_NAME).getFile()));
 
@@ -94,30 +99,15 @@ public class DMPModelServiceImpl implements DMPModelService {
             //unmarshal xml
             StringReader reader = new StringReader(xml);
             dmp = (DataManagementPlan) unmarshaller.unmarshal(reader);
-
         }catch(Exception e){
             e.printStackTrace();
         }
 
-        // CREATE MODEL
-        // TODO transform unmarshalled xml to "at.tuwien.ss17.dp.lab3.datascience.model.dmp.json" and return it
-
+        // create and return model
         return transform(dmp);
-
-
-
     }
 
     private DmpModel transform(DataManagementPlan dmpXml){
-
-        int id = 0;
-        int locX = 120;
-        int locY = 120;
-        int lvl0RootId = 0;
-        int lvl1RootId = 0;
-        int lvl2RootId = 0;
-        final int X_OFFSET = 140;
-        final int Y_OFFSET = 140;
 
         DmpModel dmpJson = new DmpModel();
 
@@ -200,72 +190,13 @@ public class DMPModelServiceImpl implements DMPModelService {
                 lvl1RootId = id++;
 
                 if (experimentFile.getMetadata() != null){
-                    MetadataType metadataType = experimentFile.getMetadata();
-                    dmpJson.addNodeDataArray(new NodeDataArray(id, String.valueOf(locX+X_OFFSET)+" "+String.valueOf(locY+=Y_OFFSET), "metadata"));
-                    dmpJson.addLinkDataArray(new LinkDataArray(lvl1RootId, id, "has", -20));
-                    lvl2RootId = id++;
-                    if (metadataType.getDcFormat() != null){
-                        dmpJson.addNodeDataArray(new NodeDataArray(id, String.valueOf(locX+=X_OFFSET)+" "+String.valueOf(locY+Y_OFFSET), metadataType.getDcFormat()));
-                        dmpJson.addLinkDataArray(new LinkDataArray(lvl2RootId, id++, "has", -20));
-                    }
-                    if (metadataType.getDcMimeType() != null){
-                        dmpJson.addNodeDataArray(new NodeDataArray(id, String.valueOf(locX+=X_OFFSET)+" "+String.valueOf(locY+Y_OFFSET), metadataType.getDcMimeType()));
-                        dmpJson.addLinkDataArray(new LinkDataArray(lvl2RootId, id++, "has", -20));
-                    }
-                    if (metadataType.getDcEncoding() != null){
-                        dmpJson.addNodeDataArray(new NodeDataArray(id, String.valueOf(locX+=X_OFFSET)+" "+String.valueOf(locY+Y_OFFSET), metadataType.getDcEncoding()));
-                        dmpJson.addLinkDataArray(new LinkDataArray(lvl2RootId, id++, "has", -20));
-                    }
-                    if (metadataType.getDcTitle() != null){
-                        dmpJson.addNodeDataArray(new NodeDataArray(id, String.valueOf(locX+=X_OFFSET)+" "+String.valueOf(locY+Y_OFFSET), metadataType.getDcTitle()));
-                        dmpJson.addLinkDataArray(new LinkDataArray(lvl2RootId, id++, "has", -20));
-                    }
-                    if (metadataType.getDcDescription() != null){
-                        dmpJson.addNodeDataArray(new NodeDataArray(id, String.valueOf(locX+=X_OFFSET)+" "+String.valueOf(locY+Y_OFFSET), metadataType.getDcDescription()));
-                        dmpJson.addLinkDataArray(new LinkDataArray(lvl2RootId, id++, "has", -20));
-                    }
-                    if (metadataType.getDcCreator() != null){
-                        dmpJson.addNodeDataArray(new NodeDataArray(id, String.valueOf(locX+=X_OFFSET)+" "+String.valueOf(locY+Y_OFFSET), metadataType.getDcCreator()));
-                        dmpJson.addLinkDataArray(new LinkDataArray(lvl2RootId, id++, "has", -20));
-                    }
-                    if (metadataType.getDcSource() != null){
-                        dmpJson.addNodeDataArray(new NodeDataArray(id, String.valueOf(locX+=X_OFFSET)+" "+String.valueOf(locY+Y_OFFSET), metadataType.getDcSource()));
-                        dmpJson.addLinkDataArray(new LinkDataArray(lvl2RootId, id++, "has", -20));
-                    }
-                    if (metadataType.getDcDate() != null){
-                        dmpJson.addNodeDataArray(new NodeDataArray(id, String.valueOf(locX+=X_OFFSET)+" "+String.valueOf(locY+Y_OFFSET), metadataType.getDcDate().toString()));
-                        dmpJson.addLinkDataArray(new LinkDataArray(lvl2RootId, id++, "has", -20));
-                    }
+                    addMetaData(experimentFile.getMetadata(), dmpJson);
                 }
-
                 if (experimentFile.getPreservation() != null){
-                    PreservationType preservationType = experimentFile.getPreservation();
-                    dmpJson.addNodeDataArray(new NodeDataArray(id, String.valueOf(locX+X_OFFSET)+" "+String.valueOf(locY), "preservation"));
-                    dmpJson.addLinkDataArray(new LinkDataArray(lvl1RootId, id, "has", -20));
-                    lvl2RootId = id++;
-                    if (preservationType.getBackupStorageURI() != null && !preservationType.getBackupStorageURI().isEmpty()){
-                        dmpJson.addNodeDataArray(new NodeDataArray(id, String.valueOf(locX+=X_OFFSET)+" "+String.valueOf(locY+Y_OFFSET), preservationType.getBackupStorageURI()));
-                        dmpJson.addLinkDataArray(new LinkDataArray(lvl2RootId, id++, "has", -20));
-                    }
-                    if (preservationType.getBackupsInCronFormat() != null && !preservationType.getBackupsInCronFormat().isEmpty()){
-                        dmpJson.addNodeDataArray(new NodeDataArray(id, String.valueOf(locX+=X_OFFSET)+" "+String.valueOf(locY+Y_OFFSET), preservationType.getBackupsInCronFormat()));
-                        dmpJson.addLinkDataArray(new LinkDataArray(lvl2RootId, id++, "has", -20));
-                    }
-                    dmpJson.addNodeDataArray(new NodeDataArray(id, String.valueOf(locX+=X_OFFSET)+" "+String.valueOf(locY+Y_OFFSET), String.valueOf(preservationType.getRetentionDurationInDays())));
-                    dmpJson.addLinkDataArray(new LinkDataArray(lvl2RootId, id++, "has", -20));
+                    addPreservaion(experimentFile.getPreservation(), dmpJson);
                 }
-
                 if (experimentFile.getDataVolume() != null){
-                    DataVolumeType dataVolumeType = experimentFile.getDataVolume();
-                    dmpJson.addNodeDataArray(new NodeDataArray(id, String.valueOf(locX+X_OFFSET)+" "+String.valueOf(locY), "dataVolume"));
-                    dmpJson.addLinkDataArray(new LinkDataArray(lvl1RootId, id, "has", -20));
-                    lvl2RootId = id++;
-                    if (dataVolumeType.getUnit() != null){
-                        dmpJson.addNodeDataArray(new NodeDataArray(id, String.valueOf(locX+=X_OFFSET)+" "+String.valueOf(locY+Y_OFFSET), dataVolumeType.getUnit().value()));
-                        dmpJson.addLinkDataArray(new LinkDataArray(lvl2RootId, id++, "has", -20));
-                    }
-                    dmpJson.addNodeDataArray(new NodeDataArray(id, String.valueOf(locX+=X_OFFSET)+" "+String.valueOf(locY+Y_OFFSET), String.valueOf(dataVolumeType.getAmount())));
-                    dmpJson.addLinkDataArray(new LinkDataArray(lvl2RootId, id++, "has", -20));
+                    addDataVolume(experimentFile.getDataVolume(), dmpJson);
                 }
                 locY-=Y_OFFSET;
             }
@@ -277,70 +208,13 @@ public class DMPModelServiceImpl implements DMPModelService {
                 lvl1RootId = id++;
 
                 if (sourceCode.getMetadata() != null){
-                    MetadataType metadataType = sourceCode.getMetadata();
-                    dmpJson.addNodeDataArray(new NodeDataArray(id, String.valueOf(locX+X_OFFSET)+" "+String.valueOf(locY+=Y_OFFSET), "metadata"));
-                    dmpJson.addLinkDataArray(new LinkDataArray(lvl1RootId, id, "has", -20));
-                    lvl2RootId = id++;
-                    if (metadataType.getDcFormat() != null){
-                        dmpJson.addNodeDataArray(new NodeDataArray(id, String.valueOf(locX+=X_OFFSET)+" "+String.valueOf(locY+Y_OFFSET), metadataType.getDcFormat()));
-                        dmpJson.addLinkDataArray(new LinkDataArray(lvl2RootId, id++, "has", -20));
-                    }
-                    if (metadataType.getDcMimeType() != null){
-                        dmpJson.addNodeDataArray(new NodeDataArray(id, String.valueOf(locX+=X_OFFSET)+" "+String.valueOf(locY+Y_OFFSET), metadataType.getDcMimeType()));
-                        dmpJson.addLinkDataArray(new LinkDataArray(lvl2RootId, id++, "has", -20));
-                    }
-                    if (metadataType.getDcEncoding() != null){
-                        dmpJson.addNodeDataArray(new NodeDataArray(id, String.valueOf(locX+=X_OFFSET)+" "+String.valueOf(locY+Y_OFFSET), metadataType.getDcEncoding()));
-                        dmpJson.addLinkDataArray(new LinkDataArray(lvl2RootId, id++, "has", -20));
-                    }
-                    if (metadataType.getDcTitle() != null){
-                        dmpJson.addNodeDataArray(new NodeDataArray(id, String.valueOf(locX+=X_OFFSET)+" "+String.valueOf(locY+Y_OFFSET), metadataType.getDcTitle()));
-                        dmpJson.addLinkDataArray(new LinkDataArray(lvl2RootId, id++, "has", -20));
-                    }
-                    if (metadataType.getDcDescription() != null){
-                        dmpJson.addNodeDataArray(new NodeDataArray(id, String.valueOf(locX+=X_OFFSET)+" "+String.valueOf(locY+Y_OFFSET), metadataType.getDcDescription()));
-                        dmpJson.addLinkDataArray(new LinkDataArray(lvl2RootId, id++, "has", -20));
-                    }
-                    if (metadataType.getDcCreator() != null){
-                        dmpJson.addNodeDataArray(new NodeDataArray(id, String.valueOf(locX+=X_OFFSET)+" "+String.valueOf(locY+Y_OFFSET), metadataType.getDcCreator()));
-                        dmpJson.addLinkDataArray(new LinkDataArray(lvl2RootId, id++, "has", -20));
-                    }
-                    if (metadataType.getDcSource() != null){
-                        dmpJson.addNodeDataArray(new NodeDataArray(id, String.valueOf(locX+=X_OFFSET)+" "+String.valueOf(locY+Y_OFFSET), metadataType.getDcSource()));
-                        dmpJson.addLinkDataArray(new LinkDataArray(lvl2RootId, id++, "has", -20));
-                    }
-                    if (metadataType.getDcDate() != null){
-                        dmpJson.addNodeDataArray(new NodeDataArray(id, String.valueOf(locX+=X_OFFSET)+" "+String.valueOf(locY+Y_OFFSET), metadataType.getDcDate().toString()));
-                        dmpJson.addLinkDataArray(new LinkDataArray(lvl2RootId, id++, "has", -20));
-                    }
+                    addMetaData(sourceCode.getMetadata(), dmpJson);
                 }
                 if (sourceCode.getPreservation() != null){
-                    PreservationType preservationType = sourceCode.getPreservation();
-                    dmpJson.addNodeDataArray(new NodeDataArray(id, String.valueOf(locX+X_OFFSET)+" "+String.valueOf(locY), "preservation"));
-                    dmpJson.addLinkDataArray(new LinkDataArray(lvl1RootId, id, "has", -20));
-                    lvl2RootId = id++;
-                    if (preservationType.getBackupStorageURI() != null && !preservationType.getBackupStorageURI().isEmpty()){
-                        dmpJson.addNodeDataArray(new NodeDataArray(id, String.valueOf(locX+=X_OFFSET)+" "+String.valueOf(locY+Y_OFFSET), preservationType.getBackupStorageURI()));
-                        dmpJson.addLinkDataArray(new LinkDataArray(lvl2RootId, id++, "has", -20));
-                    }
-                    if (preservationType.getBackupsInCronFormat() != null && !preservationType.getBackupsInCronFormat().isEmpty()){
-                        dmpJson.addNodeDataArray(new NodeDataArray(id, String.valueOf(locX+=X_OFFSET)+" "+String.valueOf(locY+Y_OFFSET), preservationType.getBackupsInCronFormat()));
-                        dmpJson.addLinkDataArray(new LinkDataArray(lvl2RootId, id++, "has", -20));
-                    }
-                    dmpJson.addNodeDataArray(new NodeDataArray(id, String.valueOf(locX+=X_OFFSET)+" "+String.valueOf(locY+Y_OFFSET), String.valueOf(preservationType.getRetentionDurationInDays())));
-                    dmpJson.addLinkDataArray(new LinkDataArray(lvl2RootId, id++, "has", -20));
+                    addPreservaion(sourceCode.getPreservation(), dmpJson);
                 }
                 if (sourceCode.getDataVolume() != null){
-                    DataVolumeType dataVolumeType = sourceCode.getDataVolume();
-                    dmpJson.addNodeDataArray(new NodeDataArray(id, String.valueOf(locX+X_OFFSET)+" "+String.valueOf(locY), "dataVolume"));
-                    dmpJson.addLinkDataArray(new LinkDataArray(lvl1RootId, id, "has", -20));
-                    lvl2RootId = id++;
-                    if (dataVolumeType.getUnit() != null){
-                        dmpJson.addNodeDataArray(new NodeDataArray(id, String.valueOf(locX+=X_OFFSET)+" "+String.valueOf(locY+Y_OFFSET), dataVolumeType.getUnit().value()));
-                        dmpJson.addLinkDataArray(new LinkDataArray(lvl2RootId, id++, "has", -20));
-                    }
-                    dmpJson.addNodeDataArray(new NodeDataArray(id, String.valueOf(locX+=X_OFFSET)+" "+String.valueOf(locY+Y_OFFSET), String.valueOf(dataVolumeType.getAmount())));
-                    dmpJson.addLinkDataArray(new LinkDataArray(lvl2RootId, id++, "has", -20));
+                    addDataVolume(sourceCode.getDataVolume(), dmpJson);
                 }
                 if (sourceCode.getDocumentation() != null){
                     dmpJson.addNodeDataArray(new NodeDataArray(id, String.valueOf(locX+X_OFFSET)+" "+String.valueOf(locY), "documentation"));
@@ -363,33 +237,75 @@ public class DMPModelServiceImpl implements DMPModelService {
                 }
             }
 
-
         }
-
-
-
-
-
-
 
         return dmpJson;
     }
 
     private void addMetaData(MetadataType metadataType, DmpModel dmpJson){
-
-        // TODO impl
+        dmpJson.addNodeDataArray(new NodeDataArray(id, String.valueOf(locX+X_OFFSET)+" "+String.valueOf(locY+=Y_OFFSET), "metadata"));
+        dmpJson.addLinkDataArray(new LinkDataArray(lvl1RootId, id, "has", -20));
+        lvl2RootId = id++;
+        if (metadataType.getDcFormat() != null){
+            dmpJson.addNodeDataArray(new NodeDataArray(id, String.valueOf(locX+=X_OFFSET)+" "+String.valueOf(locY+Y_OFFSET), metadataType.getDcFormat()));
+            dmpJson.addLinkDataArray(new LinkDataArray(lvl2RootId, id++, "has", -20));
+        }
+        if (metadataType.getDcMimeType() != null){
+            dmpJson.addNodeDataArray(new NodeDataArray(id, String.valueOf(locX+=X_OFFSET)+" "+String.valueOf(locY+Y_OFFSET), metadataType.getDcMimeType()));
+            dmpJson.addLinkDataArray(new LinkDataArray(lvl2RootId, id++, "has", -20));
+        }
+        if (metadataType.getDcEncoding() != null){
+            dmpJson.addNodeDataArray(new NodeDataArray(id, String.valueOf(locX+=X_OFFSET)+" "+String.valueOf(locY+Y_OFFSET), metadataType.getDcEncoding()));
+            dmpJson.addLinkDataArray(new LinkDataArray(lvl2RootId, id++, "has", -20));
+        }
+        if (metadataType.getDcTitle() != null){
+            dmpJson.addNodeDataArray(new NodeDataArray(id, String.valueOf(locX+=X_OFFSET)+" "+String.valueOf(locY+Y_OFFSET), metadataType.getDcTitle()));
+            dmpJson.addLinkDataArray(new LinkDataArray(lvl2RootId, id++, "has", -20));
+        }
+        if (metadataType.getDcDescription() != null){
+            dmpJson.addNodeDataArray(new NodeDataArray(id, String.valueOf(locX+=X_OFFSET)+" "+String.valueOf(locY+Y_OFFSET), metadataType.getDcDescription()));
+            dmpJson.addLinkDataArray(new LinkDataArray(lvl2RootId, id++, "has", -20));
+        }
+        if (metadataType.getDcCreator() != null){
+            dmpJson.addNodeDataArray(new NodeDataArray(id, String.valueOf(locX+=X_OFFSET)+" "+String.valueOf(locY+Y_OFFSET), metadataType.getDcCreator()));
+            dmpJson.addLinkDataArray(new LinkDataArray(lvl2RootId, id++, "has", -20));
+        }
+        if (metadataType.getDcSource() != null){
+            dmpJson.addNodeDataArray(new NodeDataArray(id, String.valueOf(locX+=X_OFFSET)+" "+String.valueOf(locY+Y_OFFSET), metadataType.getDcSource()));
+            dmpJson.addLinkDataArray(new LinkDataArray(lvl2RootId, id++, "has", -20));
+        }
+        if (metadataType.getDcDate() != null){
+            dmpJson.addNodeDataArray(new NodeDataArray(id, String.valueOf(locX+=X_OFFSET)+" "+String.valueOf(locY+Y_OFFSET), metadataType.getDcDate().toString()));
+            dmpJson.addLinkDataArray(new LinkDataArray(lvl2RootId, id++, "has", -20));
+        }
     }
 
-    private void addPreservaion(MetadataType metadataType, DmpModel dmpJson){
-
-
-        // TODO impl
+    private void addPreservaion(PreservationType preservationType, DmpModel dmpJson){
+        dmpJson.addNodeDataArray(new NodeDataArray(id, String.valueOf(locX+X_OFFSET)+" "+String.valueOf(locY), "preservation"));
+        dmpJson.addLinkDataArray(new LinkDataArray(lvl1RootId, id, "has", -20));
+        lvl2RootId = id++;
+        if (preservationType.getBackupStorageURI() != null && !preservationType.getBackupStorageURI().isEmpty()){
+            dmpJson.addNodeDataArray(new NodeDataArray(id, String.valueOf(locX+=X_OFFSET)+" "+String.valueOf(locY+Y_OFFSET), preservationType.getBackupStorageURI()));
+            dmpJson.addLinkDataArray(new LinkDataArray(lvl2RootId, id++, "has", -20));
+        }
+        if (preservationType.getBackupsInCronFormat() != null && !preservationType.getBackupsInCronFormat().isEmpty()){
+            dmpJson.addNodeDataArray(new NodeDataArray(id, String.valueOf(locX+=X_OFFSET)+" "+String.valueOf(locY+Y_OFFSET), preservationType.getBackupsInCronFormat()));
+            dmpJson.addLinkDataArray(new LinkDataArray(lvl2RootId, id++, "has", -20));
+        }
+        dmpJson.addNodeDataArray(new NodeDataArray(id, String.valueOf(locX+=X_OFFSET)+" "+String.valueOf(locY+Y_OFFSET), String.valueOf(preservationType.getRetentionDurationInDays())));
+        dmpJson.addLinkDataArray(new LinkDataArray(lvl2RootId, id++, "has", -20));
     }
 
-    private void addDataVolume(MetadataType metadataType, DmpModel dmpJson){
-
-
-        // TODO impl
+    private void addDataVolume(DataVolumeType dataVolumeType, DmpModel dmpJson){
+        dmpJson.addNodeDataArray(new NodeDataArray(id, String.valueOf(locX+X_OFFSET)+" "+String.valueOf(locY), "dataVolume"));
+        dmpJson.addLinkDataArray(new LinkDataArray(lvl1RootId, id, "has", -20));
+        lvl2RootId = id++;
+        if (dataVolumeType.getUnit() != null){
+            dmpJson.addNodeDataArray(new NodeDataArray(id, String.valueOf(locX+=X_OFFSET)+" "+String.valueOf(locY+Y_OFFSET), dataVolumeType.getUnit().value()));
+            dmpJson.addLinkDataArray(new LinkDataArray(lvl2RootId, id++, "has", -20));
+        }
+        dmpJson.addNodeDataArray(new NodeDataArray(id, String.valueOf(locX+=X_OFFSET)+" "+String.valueOf(locY+Y_OFFSET), String.valueOf(dataVolumeType.getAmount())));
+        dmpJson.addLinkDataArray(new LinkDataArray(lvl2RootId, id++, "has", -20));
     }
 
 }
