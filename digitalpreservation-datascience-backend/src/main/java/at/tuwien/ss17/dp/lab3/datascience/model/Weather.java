@@ -8,7 +8,7 @@ import java.time.format.DateTimeFormatter;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import at.tuwien.ss17.sp.lab3.datascience.constants.Constants;
+import at.tuwien.ss17.dp.lab3.datascience.constants.Constants;
 
 @Document(collection = "weather")
 public class Weather implements Serializable {

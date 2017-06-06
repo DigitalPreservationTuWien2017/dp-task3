@@ -1,4 +1,4 @@
-package at.tuwien.ss17.sp.lab3.datascience.constants;
+package at.tuwien.ss17.dp.lab3.datascience.constants;
 
 import java.time.format.DateTimeFormatter;
 
