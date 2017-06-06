@@ -6,7 +6,7 @@
 				<xs:element type="ethicsPrivacyType" name="ethicsPrivacy" minOccurs="0" maxOccurs="unbounded"/>
 				<xs:element type="rolesAndResponsibilitiesType" name="rolesAndResponsibilities" minOccurs="1" maxOccurs="unbounded"/>
 				<xs:element type="budgetType" name="budget" minOccurs="1" maxOccurs="unbounded"/>
-				<xs:element name="experimentFile" minOccurs="0" maxOccurs="1">
+				<xs:element name="experimentFile" minOccurs="1" maxOccurs="1">
 					<xs:complexType>
 						<xs:sequence>
 							<xs:element type="metadataType" name="metadata" minOccurs="1" maxOccurs="1"/>
@@ -15,7 +15,7 @@
 						</xs:sequence>
 					</xs:complexType>
 				</xs:element>
-				<xs:element name="sourceCode" minOccurs="0" maxOccurs="1">
+				<xs:element name="sourceCode" minOccurs="1" maxOccurs="1">
 					<xs:complexType>
 						<xs:sequence>
 							<xs:element type="metadataType" name="metadata" minOccurs="1" maxOccurs="1"/>
@@ -35,7 +35,7 @@
 			<xs:element name="dcMimeType" type="xs:string" minOccurs="1" maxOccurs="1"/>
 			<xs:element name="dcEncoding" type="xs:string" minOccurs="1" maxOccurs="1"/>
 			<xs:element name="dcTitle" type="xs:string" minOccurs="1" maxOccurs="1"/>
-			<xs:element name="dcDescription" type="xs:string" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="dcDescription" type="xs:string" minOccurs="1" maxOccurs="1"/>
 			<xs:element name="dcCreator" type="xs:string" minOccurs="1" maxOccurs="1"/>
 			<xs:element name="dcSource" type="xs:string" minOccurs="1" maxOccurs="1"/>
 			<xs:element name="dcDate" type="xs:date" minOccurs="1" maxOccurs="1"/>			
